@@ -1,0 +1,24 @@
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<div class="login-page" style="min-height: 466px;">
+    <div class="login-box">
+
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <a href="/" class="h1"><b>t6lab</b></a>
+            </div>
+            <div class="card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+                <div th:utext="${loginForm}"></div>
+
+                <p class="mb-1">
+<!--                    <a href="/authentication/restore">I forgot my password</a>-->
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>

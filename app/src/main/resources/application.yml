@@ -1,0 +1,15 @@
+server:
+  port: 80
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: qwe
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+adminlte:
+  page-title: AdminLTE Demo
+  project-name: AdminLTE Demo
