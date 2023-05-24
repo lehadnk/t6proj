@@ -13,17 +13,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import t6proj.authorization.communication.http.RequiresAuthorizedUser;
 import t6proj.dashboard.communication.http.templates.DashboardTemplate;
+import t6proj.employees.EmployeesService;
 
 @Controller
 public class DashboardController extends AbstractHtmlController {
-    public DashboardController(LayoutFactory layoutFactory, HtmlTemplateRendererService htmlTemplateRendererService, WebFormService webFormService, EntityListTableService entityListTableService, SessionServiceInterface sessionService, AuthenticationServiceInterface authenticationService, FlashMessageService flashMessageService) {
-        super(layoutFactory, htmlTemplateRendererService, webFormService, entityListTableService, sessionService, authenticationService, flashMessageService);
-    }
+    private final EmployeesService employeesService;
 
-    @GetMapping("/test-auth")
-    @RequiresAuthorizedUser
-    public void testAuth()
-    {
+    public DashboardController(
+            LayoutFactory layoutFactory,
+            HtmlTemplateRendererService htmlTemplateRendererService,
+            WebFormService webFormService,
+            EntityListTableService entityListTableService,
+            SessionServiceInterface sessionService,
+            AuthenticationServiceInterface authenticationService,
+            FlashMessageService flashMessageService,
+            EmployeesService employeesService
+    ) {
+        super(layoutFactory, htmlTemplateRendererService, webFormService, entityListTableService, sessionService, authenticationService, flashMessageService);
+        this.employeesService = employeesService;
     }
 
     @GetMapping("/dashboard")
@@ -33,7 +40,7 @@ public class DashboardController extends AbstractHtmlController {
     {
         var template = new DashboardTemplate(
                 this.layoutFactory.createAuthorizedAdminLayout("Dashboard"),
-                7
+                this.employeesService.getEmployeeRequestsCount()
         );
 
         return this.renderTemplate(template);

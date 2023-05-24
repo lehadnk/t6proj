@@ -60,4 +60,8 @@ public class EmployeeRequestDao {
         var employeeRequestEntity = this.repository.getEmployeeRequestsById(id);
         return this.mapper.entityToDto(employeeRequestEntity);
     }
+
+    public Integer getEmployeeRequestCount() {
+        return this.repository.getEmployeeRequestsCount();
+    }
 }

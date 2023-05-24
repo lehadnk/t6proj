@@ -58,4 +58,8 @@ public class EmployeesService {
     public EmployeeRequest getEmployeeRequestById(Integer id) {
         return this.employeeRequestDao.getEmployeeRequestById(id);
     }
+
+    public Integer getEmployeeRequestsCount() {
+        return this.employeeRequestDao.getEmployeeRequestCount();
+    }
 }
