@@ -12,18 +12,18 @@ public class EmployeeForm extends AbstractWebForm<Employee> {
     public EmployeeForm(Integer id, List<Job> jobs)
     {
         this.elements.put("id", new Hidden().setValue(id != null ? id.toString() : null));
-        this.elements.put("firstName", new Input().setRequired().setLabel("First Name"));
-        this.elements.put("middleName", new Input().setRequired().setLabel("Middle Name"));
-        this.elements.put("lastName", new Input().setRequired().setLabel("Last Name"));
-        this.elements.put("birthdate", new DateTime().setRequired().setLabel("Birth Date"));
-        this.elements.put("employedAt", new DateTime().setRequired().setLabel("Employed At"));
+        this.elements.put("firstName", new Input().setRequired().setLabel("Имя"));
+        this.elements.put("middleName", new Input().setRequired().setLabel("Отчество"));
+        this.elements.put("lastName", new Input().setRequired().setLabel("Фамилия"));
+        this.elements.put("birthdate", new DateTime().setRequired().setLabel("Дата рождения"));
+        this.elements.put("employedAt", new DateTime().setRequired().setLabel("Дата трудоустройства"));
 
         var jobOptions = new HashMap<String, String>();
         for (var job : jobs) {
             jobOptions.put(job.id.toString(), job.title);
         }
-        this.elements.put("jobId", new Select(jobOptions).setLabel("Job"));
+        this.elements.put("jobId", new Select(jobOptions).setLabel("Работа"));
 
-        this.submitButton = new Submit("Save");
+        this.submitButton = new Submit("Сохранить");
     }
 }

@@ -16,18 +16,19 @@ public class EmployeeListTable extends AbstractTable<Employee> {
 
     @Override
     public String getTitle() {
-        return "Employees";
+        return "Сотрудники";
     }
 
     @Override
     public void defineColumns() {
         this.columns.add(new TextColumn("id").setTitle("ID"));
-        this.columns.add(new TextColumn("firstName").setTitle("First Name"));
-        this.columns.add(new TextColumn("lastName").setTitle("Last Name"));
+        this.columns.add(new TextColumn("firstName").setTitle("Имя"));
+        this.columns.add(new TextColumn("lastName").setTitle("Фамилия"));
+        this.columns.add(new TextColumn("birthdate").setTitle("Дата рождения"));
 
         var actionButtons = new ArrayList<ActionButton>();
-        actionButtons.add(new ActionButton("View", "/employees/<:id>/view", "id"));
-        actionButtons.add(new ActionButton("Edit", "/employees/<:id>/edit", "id"));
+        actionButtons.add(new ActionButton("Документы", "/employees/<:id>/view", "id"));
+        actionButtons.add(new ActionButton("Редактировать", "/employees/<:id>/edit", "id"));
         this.columns.add(new ActionsColumn(actionButtons));
     }
 }

@@ -10,8 +10,8 @@ public class DepartmentForm extends AbstractWebForm<Department> {
     public DepartmentForm(Integer id)
     {
         this.elements.put("id", new Hidden().setValue(id != null ? id.toString() : null));
-        this.elements.put("title", new Input().setRequired().setLabel("Title"));
+        this.elements.put("title", new Input().setRequired().setLabel("Заголовок"));
 
-        this.submitButton = new Submit("Save");
+        this.submitButton = new Submit("Сохранить");
     }
 }

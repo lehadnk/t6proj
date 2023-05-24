@@ -16,17 +16,17 @@ public class EmployeeRequestListTable extends AbstractTable<EmployeeRequest> {
 
     @Override
     public String getTitle() {
-        return "Employee Requests";
+        return "Запросы от сотрудников";
     }
 
     @Override
     public void defineColumns() {
         this.columns.add(new TextColumn("id").setTitle("ID"));
-        this.columns.add(new TextColumn("authorName").setTitle("Author"));
-        this.columns.add(new TextColumn("title").setTitle("Title"));
+        this.columns.add(new TextColumn("authorName").setTitle("Автор"));
+        this.columns.add(new TextColumn("title").setTitle("Заголовок"));
 
         var actionButtons = new ArrayList<ActionButton>();
-        actionButtons.add(new ActionButton("View", "/employee-requests/<:id>", "id"));
+        actionButtons.add(new ActionButton("Документы", "/employee-requests/<:id>", "id"));
         this.columns.add(new ActionsColumn(actionButtons));
     }
 }

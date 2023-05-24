@@ -11,5 +11,5 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     generate-ddl: true
 adminlte:
-  page-title: AdminLTE Demo
-  project-name: AdminLTE Demo
+  page-title: Отдел кадров
+  project-name: Отдел кадров

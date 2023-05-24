@@ -15,14 +15,14 @@ public class JobForm extends AbstractWebForm<Job> {
     public JobForm(Integer id, List<Department> departments)
     {
         this.elements.put("id", new Hidden().setValue(id != null ? id.toString() : null));
-        this.elements.put("title", new Input().setRequired().setLabel("Title"));
+        this.elements.put("title", new Input().setRequired().setLabel("Заголовок"));
 
         var departmentOptions = new HashMap<String, String>();
         for (var department : departments) {
             departmentOptions.put(department.id.toString(), department.title);
         }
-        this.elements.put("departmentId", new Select(departmentOptions).setLabel("Department"));
+        this.elements.put("departmentId", new Select(departmentOptions).setLabel("Департамент"));
 
-        this.submitButton = new Submit("Save");
+        this.submitButton = new Submit("Сохранить");
     }
 }

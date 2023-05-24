@@ -17,14 +17,14 @@ public class EmployeeDocumentForm extends AbstractWebForm<EmployeeDocument> {
         this.elements.put("employeeId", new Hidden().setValue(employeeId != null ? employeeId.toString() : null));
 
         var documentTypeOptions = new HashMap<String, String>();
-        documentTypeOptions.put(EmployeeDocumentEnum.PASSPORT.name(), "Passport");
-        documentTypeOptions.put(EmployeeDocumentEnum.TIN.name(), "TIN");
-        documentTypeOptions.put(EmployeeDocumentEnum.SNILS.name(), "SNILS");
-        documentTypeOptions.put(EmployeeDocumentEnum.EMPLOYMENT_HISTORY.name(), "Employment History");
-        this.elements.put("documentType", new Select(documentTypeOptions).setLabel("Document Type"));
+        documentTypeOptions.put(EmployeeDocumentEnum.PASSPORT.name(), "Паспорт");
+        documentTypeOptions.put(EmployeeDocumentEnum.TIN.name(), "ИНН");
+        documentTypeOptions.put(EmployeeDocumentEnum.SNILS.name(), "СНИЛС");
+        documentTypeOptions.put(EmployeeDocumentEnum.EMPLOYMENT_HISTORY.name(), "Трудовая книга");
+        this.elements.put("documentType", new Select(documentTypeOptions).setLabel("Тип документа"));
 
         this.elements.put("url", new Input().setRequired().setLabel("URL"));
 
-        this.submitButton = new Submit("Save");
+        this.submitButton = new Submit("Сохранить");
     }
 }

@@ -16,16 +16,16 @@ public class JobsTable extends AbstractTable<Job> {
 
     @Override
     public String getTitle() {
-        return "Jobs";
+        return "Рабочие места";
     }
 
     @Override
     public void defineColumns() {
         this.columns.add(new TextColumn("id").setTitle("ID"));
-        this.columns.add(new TextColumn("title").setTitle("Title"));
+        this.columns.add(new TextColumn("title").setTitle("Название"));
 
         var actionButtons = new ArrayList<ActionButton>();
-        actionButtons.add(new ActionButton("Edit", "/jobs/<:id>/edit", "id"));
+        actionButtons.add(new ActionButton("Редактировать", "/jobs/<:id>/edit", "id"));
         this.columns.add(new ActionsColumn(actionButtons));
     }
 }

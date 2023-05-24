@@ -14,12 +14,12 @@ public class EmployeeDocumentListTable extends AbstractTable<EmployeeDocument> {
 
     @Override
     public String getTitle() {
-        return "Employee Documents";
+        return "Документы сотрудников";
     }
 
     @Override
     public void defineColumns() {
         this.columns.add(new TextColumn("id").setTitle("ID"));
-        this.columns.add(new TextColumn("documentType").setTitle("Document Type"));
+        this.columns.add(new TextColumn("documentType").setTitle("Тип документа"));
     }
 }
