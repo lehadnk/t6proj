@@ -10,4 +10,6 @@ public interface EmployeeDocumentMapper {
     EmployeeDocumentMapper INSTANCE = Mappers.getMapper(EmployeeDocumentMapper.class);
 
     EmployeeDocumentEntity mapDtoToEntity(EmployeeDocument dto);
+
+    EmployeeDocument entityToDto(EmployeeDocumentEntity employeeDocumentEntity);
 }
