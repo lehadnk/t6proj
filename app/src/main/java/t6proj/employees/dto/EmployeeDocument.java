@@ -6,6 +6,6 @@ import lombok.Setter;
 public class EmployeeDocument {
     public Integer id;
     public EmployeeDocumentEnum documentType;
-    public String documentUrl;
+    public String url;
     public Integer employeeId;
 }

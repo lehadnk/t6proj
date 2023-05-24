@@ -5,13 +5,12 @@ import adminlte.web_form.communication.form_elements.Hidden;
 import adminlte.web_form.communication.form_elements.Input;
 import adminlte.web_form.communication.form_elements.Select;
 import adminlte.web_form.communication.form_elements.Submit;
+import t6proj.employees.dto.EmployeeDocument;
 import t6proj.employees.dto.EmployeeDocumentEnum;
-import t6proj.jobs.dto.Job;
 
 import java.util.HashMap;
-import java.util.List;
 
-public class EmployeeDocumentForm extends AbstractWebForm<Job> {
+public class EmployeeDocumentForm extends AbstractWebForm<EmployeeDocument> {
     public EmployeeDocumentForm(Integer id, Integer employeeId)
     {
         this.elements.put("id", new Hidden().setValue(id != null ? id.toString() : null));

@@ -6,8 +6,12 @@ import adminlte.html_controller.communication.http.layout.authorized_admin.Autho
 public class EditEmployeeDocumentTemplate extends AbstractAuthorizedAdminLayoutTemplate {
     private String templatePath = "employees/communication/http/templates/html/edit-employee-document.html";
 
-    public EditEmployeeDocumentTemplate(AuthorizedAdminLayout layout) {
+    public EditEmployeeDocumentTemplate(
+            AuthorizedAdminLayout layout,
+            String formContents
+    ) {
         super(layout);
+        this.context.setVariable("formContents", formContents);
     }
 
     @Override

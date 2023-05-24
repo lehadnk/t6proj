@@ -2,8 +2,12 @@ package t6proj.employees.communication.http.tables;
 
 import adminlte.entity_list_table.business.PaginatedEntityListInterface;
 import adminlte.entity_list_table.communication.http.tables.AbstractTable;
+import adminlte.entity_list_table.communication.http.tables.columns.ActionButton;
+import adminlte.entity_list_table.communication.http.tables.columns.ActionsColumn;
 import adminlte.entity_list_table.communication.http.tables.columns.TextColumn;
 import t6proj.employees.dto.Employee;
+
+import java.util.ArrayList;
 
 public class EmployeeListTable extends AbstractTable<Employee> {
     public EmployeeListTable(PaginatedEntityListInterface<Employee> entityPaginatedList) {
@@ -20,6 +24,10 @@ public class EmployeeListTable extends AbstractTable<Employee> {
         this.columns.add(new TextColumn("id").setTitle("ID"));
         this.columns.add(new TextColumn("firstName").setTitle("First Name"));
         this.columns.add(new TextColumn("lastName").setTitle("Last Name"));
-        this.columns.add(new TextColumn("status").setTitle("Status"));
+
+        var actionButtons = new ArrayList<ActionButton>();
+        actionButtons.add(new ActionButton("View", "/employees/<:id>/view", "id"));
+        actionButtons.add(new ActionButton("Edit", "/employees/<:id>/edit", "id"));
+        this.columns.add(new ActionsColumn(actionButtons));
     }
 }

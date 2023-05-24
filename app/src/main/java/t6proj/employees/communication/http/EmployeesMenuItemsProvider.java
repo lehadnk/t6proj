@@ -13,8 +13,8 @@ public class EmployeesMenuItemsProvider implements MenuItemsProviderInterface {
     @Override
     public List<MenuItemInterface> getMenuItems() {
         var menuItems = new ArrayList<MenuItemInterface>();
-        menuItems.add(new NavigationMenuItem().setTitle("Employees").setUrl("/employees"));
-        menuItems.add(new NavigationMenuItem().setTitle("Employee Request").setUrl("/employee-requests"));
+        menuItems.add(new NavigationMenuItem().setTitle("Employees").setUrl("/employees/"));
+        menuItems.add(new NavigationMenuItem().setTitle("Employee Request").setUrl("/employee-requests/"));
         return menuItems;
     }
 }

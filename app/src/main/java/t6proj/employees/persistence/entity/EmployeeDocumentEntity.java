@@ -1,6 +1,7 @@
 package t6proj.employees.persistence.entity;
 
 import jakarta.persistence.*;
+import t6proj.employees.dto.EmployeeDocumentEnum;
 
 @Entity
 @Table(name="employee_documents")
@@ -13,6 +14,9 @@ public class EmployeeDocumentEntity {
 
     @Column(name="employee_id")
     public Integer employeeId;
+
+    @Column(name="document_type")
+    public EmployeeDocumentEnum documentType;
 
     @Column(name="url")
     public String url;

@@ -12,7 +12,15 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class EmployeeRequestController extends AbstractHtmlController {
-    public EmployeeRequestController(LayoutFactory layoutFactory, HtmlTemplateRendererService htmlTemplateRendererService, WebFormService webFormService, EntityListTableService entityListTableService, SessionServiceInterface sessionService, AuthenticationServiceInterface authenticationService, FlashMessageService flashMessageService) {
+    public EmployeeRequestController(
+            LayoutFactory layoutFactory,
+            HtmlTemplateRendererService htmlTemplateRendererService,
+            WebFormService webFormService,
+            EntityListTableService entityListTableService,
+            SessionServiceInterface sessionService,
+            AuthenticationServiceInterface authenticationService,
+            FlashMessageService flashMessageService
+    ) {
         super(layoutFactory, htmlTemplateRendererService, webFormService, entityListTableService, sessionService, authenticationService, flashMessageService);
     }
 }

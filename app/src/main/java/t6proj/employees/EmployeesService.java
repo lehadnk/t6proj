@@ -4,20 +4,25 @@ import adminlte.entity_list_table.business.PaginatedEntityListInterface;
 import org.springframework.stereotype.Service;
 import t6proj.employees.dto.Employee;
 import t6proj.employees.dto.EmployeeDocument;
+import t6proj.employees.dto.EmployeeRequest;
 import t6proj.employees.persistence.dao.EmployeeDao;
 import t6proj.employees.persistence.dao.EmployeeDocumentDao;
+import t6proj.employees.persistence.dao.EmployeeRequestDao;
 
 @Service
 public class EmployeesService {
     private final EmployeeDao employeeDao;
     private final EmployeeDocumentDao employeeDocumentDao;
+    private final EmployeeRequestDao employeeRequestDao;
 
     public EmployeesService(
             EmployeeDao employeeDao,
-            EmployeeDocumentDao employeeDocumentDao
+            EmployeeDocumentDao employeeDocumentDao,
+            EmployeeRequestDao employeeRequestDao
     ) {
         this.employeeDao = employeeDao;
         this.employeeDocumentDao = employeeDocumentDao;
+        this.employeeRequestDao = employeeRequestDao;
     }
 
     public Employee saveEmployee(Employee employee)
@@ -34,15 +39,19 @@ public class EmployeesService {
         return this.employeeDao.getEmployeesList(page, pageSize);
     }
 
-    public PaginatedEntityListInterface<EmployeeDocument> getEmployeeDocumentList(Integer page, int pageSize) {
-        return null;
+    public PaginatedEntityListInterface<EmployeeDocument> getEmployeeDocumentList(Integer employeeId, Integer page, int pageSize) {
+        return this.employeeDocumentDao.getEmployeeDocumentsList(employeeId, page, pageSize);
     }
 
-    public PaginatedEntityListInterface<Employee> getEmployeeRequests(Integer page, int pageSize) {
-        return null;
+    public PaginatedEntityListInterface<EmployeeRequest> getEmployeeRequests(Integer page, int pageSize) {
+        return this.employeeRequestDao.getEmployeeRequestList(page, pageSize);
     }
 
-    public PaginatedEntityListInterface<Employee> getEmployeeRequestsByEmployee(Integer employeeId, Integer page, int pageSize) {
-        return null;
+    public PaginatedEntityListInterface<EmployeeRequest> getEmployeeRequestsByEmployee(Integer employeeId, Integer page, int pageSize) {
+        return this.employeeRequestDao.getEmployeeRequestListByEmployee(employeeId, page, pageSize);
+    }
+
+    public Employee getEmployeeById(Integer id) {
+        return this.employeeDao.getEmployee(id);
     }
 }

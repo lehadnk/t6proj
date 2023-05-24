@@ -6,7 +6,9 @@ import adminlte.entity_list_table.communication.http.tables.columns.TextColumn;
 import t6proj.employees.dto.EmployeeDocument;
 
 public class EmployeeDocumentListTable extends AbstractTable<EmployeeDocument> {
-    public EmployeeDocumentListTable(PaginatedEntityListInterface<EmployeeDocument> entityPaginatedList) {
+    public EmployeeDocumentListTable(
+            PaginatedEntityListInterface<EmployeeDocument> entityPaginatedList
+    ) {
         super(entityPaginatedList);
     }
 

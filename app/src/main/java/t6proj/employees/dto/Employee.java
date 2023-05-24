@@ -2,6 +2,7 @@ package t6proj.employees.dto;
 
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Setter
@@ -10,8 +11,8 @@ public class Employee {
     public String firstName;
     public String middleName;
     public String lastName;
-    public Date birthdate;
-    public Date employedAt;
+    public LocalDateTime birthdate;
+    public LocalDateTime employedAt;
     public Integer jobId;
     public String jobTitle;
     public Integer departmentId;

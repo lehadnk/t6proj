@@ -23,11 +23,11 @@ public class EmployeeEntity {
     public Date birthdate;
 
     @Column(name="first_name")
-    public Date firstName;
+    public String firstName;
 
     @Column(name="middle_name")
-    public Date middleName;
+    public String middleName;
 
     @Column(name="last_name")
-    public Date lastName;
+    public String lastName;
 }

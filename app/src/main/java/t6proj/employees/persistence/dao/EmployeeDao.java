@@ -3,6 +3,7 @@ package t6proj.employees.persistence.dao;
 import adminlte.entity_list_table.business.PaginatedEntityListInterface;
 import org.springframework.stereotype.Component;
 import t6proj.employees.dto.Employee;
+import t6proj.employees.persistence.entity.EmployeeEntity;
 import t6proj.employees.persistence.mapper.EmployeeMapper;
 import t6proj.employees.persistence.repository.EmployeeRepository;
 import t6proj.framework.dto.PaginatedEntityList;
