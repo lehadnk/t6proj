@@ -8,15 +8,15 @@ import adminlte.html_controller.communication.http.layout.LayoutFactory;
 import adminlte.html_template_renderer.HtmlTemplateRendererService;
 import adminlte.session.SessionServiceInterface;
 import adminlte.web_form.WebFormService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import t6proj.authorization.communication.http.RequiresAuthorizedUser;
 import t6proj.employees.EmployeesService;
 import t6proj.employees.communication.http.tables.EmployeeRequestListTable;
 import t6proj.employees.communication.http.templates.EmployeeRequestListTemplate;
+import t6proj.employees.communication.http.templates.ViewEmployeeRequestTemplate;
 
 @Controller
 @RequestMapping("/employee-requests")
@@ -50,6 +50,25 @@ public class EmployeeRequestController extends AbstractHtmlController {
                 new EmployeeRequestListTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Employee Requests"),
                         this.renderTable(employeeRequestsTable)
+                )
+        );
+    }
+
+    @GetMapping("/{id}")
+    @RequiresAuthorizedUser
+    @ResponseBody
+    public String view(
+            @PathVariable("id") Integer id
+    ) {
+        var employeeRequest = this.employeesService.getEmployeeRequestById(id);
+        if (employeeRequest == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        return this.renderTemplate(
+                new ViewEmployeeRequestTemplate(
+                        this.layoutFactory.createAuthorizedAdminLayout("View Employee Request"),
+                        employeeRequest
                 )
         );
     }

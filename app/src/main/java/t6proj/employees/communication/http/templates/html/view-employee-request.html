@@ -1,1 +1,14 @@
-<div th:utext="${formContents}"></div>
+<div>
+    <table class="table table-head-fixed">
+        <tbody>
+            <tr>
+                <td>Title</td>
+                <td th:text="${employeeRequest.title}"></td>
+            </tr>
+            <tr>
+                <td>Text</td>
+                <td th:text="${employeeRequest.text}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

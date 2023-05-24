@@ -54,4 +54,8 @@ public class EmployeesService {
     public Employee getEmployeeById(Integer id) {
         return this.employeeDao.getEmployee(id);
     }
+
+    public EmployeeRequest getEmployeeRequestById(Integer id) {
+        return this.employeeRequestDao.getEmployeeRequestById(id);
+    }
 }
