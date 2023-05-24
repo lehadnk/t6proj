@@ -125,7 +125,7 @@ public class EmployeeController extends AbstractHtmlController {
 
         if (this.webFormService.isFormValid(employeeForm)) {
             this.employeesService.saveEmployee(request);
-            this.addSuccessMessage("Employee saved");
+            this.addSuccessMessage("Сотрудник сохранен");
 
             return this.redirect("/employees/");
         }

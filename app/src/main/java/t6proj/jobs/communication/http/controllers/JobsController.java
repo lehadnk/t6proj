@@ -116,7 +116,7 @@ public class JobsController extends AbstractHtmlController {
 
         if (this.webFormService.isFormValid(jobForm)) {
             this.jobsService.saveJob(request);
-            this.addSuccessMessage("Job saved");
+            this.addSuccessMessage("Рабочее место сохранено");
 
             return this.redirect("/jobs/");
         }

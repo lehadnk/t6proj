@@ -52,7 +52,7 @@ public class EmployeeDocumentController extends AbstractHtmlController {
 
         if (this.webFormService.isFormValid(employeeDocumentForm)) {
             this.employeesService.saveEmployeeDocument(request);
-            this.addSuccessMessage("Employee document saved");
+            this.addSuccessMessage("Документ сотрудника сохранен");
             return this.redirect("/employees/" + request.employeeId + "/view");
         }
 

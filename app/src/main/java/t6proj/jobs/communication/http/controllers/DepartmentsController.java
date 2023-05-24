@@ -109,7 +109,7 @@ public class DepartmentsController extends AbstractHtmlController {
 
         if (this.webFormService.isFormValid(departmentForm)) {
             this.jobsService.saveDepartment(request);
-            this.addSuccessMessage("Department saved");
+            this.addSuccessMessage("Отдел сохранен");
 
             return this.redirect("/departments/");
         }
