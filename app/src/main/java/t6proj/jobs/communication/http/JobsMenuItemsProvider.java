@@ -13,7 +13,7 @@ public class JobsMenuItemsProvider implements MenuItemsProviderInterface {
     @Override
     public List<MenuItemInterface> getMenuItems() {
         var menuItems = new ArrayList<MenuItemInterface>();
-        menuItems.add(new NavigationMenuItem().setTitle("Департаменты").setUrl("/departments/"));
+        menuItems.add(new NavigationMenuItem().setTitle("Отделы").setUrl("/departments/"));
         menuItems.add(new NavigationMenuItem().setTitle("Рабочие места").setUrl("/jobs/"));
         return menuItems;
     }

@@ -3,7 +3,6 @@ package t6proj.jobs.persistence.dao;
 import org.springframework.stereotype.Component;
 import t6proj.framework.dto.PaginatedEntityList;
 import t6proj.jobs.dto.Department;
-import t6proj.jobs.persistence.entity.DepartmentEntity;
 import t6proj.jobs.persistence.mapper.DepartmentMapper;
 import t6proj.jobs.persistence.repository.DepartmentRepository;
 

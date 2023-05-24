@@ -1,6 +1,7 @@
 package t6proj.jobs.persistence.entity;
 
 import jakarta.persistence.*;
+import t6proj.jobs.dto.Department;
 
 @Entity
 @Table(name="departments")
@@ -13,4 +14,8 @@ public class DepartmentEntity {
 
     @Column(name="title")
     public String title;
+
+    @ManyToOne
+    @JoinColumn(name="parent_department_id")
+    public DepartmentEntity parentDepartment;
 }

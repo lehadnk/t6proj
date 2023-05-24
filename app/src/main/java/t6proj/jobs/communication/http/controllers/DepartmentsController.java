@@ -63,7 +63,9 @@ public class DepartmentsController extends AbstractHtmlController {
     @RequiresAuthorizedUser
     public String createDepartment()
     {
-        var departmentForm = new DepartmentForm(null);
+        var departments = this.jobsService.getDepartmentList(1, 10000);
+
+        var departmentForm = new DepartmentForm(null, departments.getEntities());
         departmentForm.setActionUrl("/departments/save");
 
         return this.renderTemplate(
@@ -86,7 +88,9 @@ public class DepartmentsController extends AbstractHtmlController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
-        var departmentForm = new DepartmentForm(id);
+        var departmentList = this.jobsService.getDepartmentList(1, 10000);
+
+        var departmentForm = new DepartmentForm(id, departmentList.getEntities());
         departmentForm.hydrateFromRequest(department);
         departmentForm.setActionUrl("/departments/save");
 
@@ -104,7 +108,9 @@ public class DepartmentsController extends AbstractHtmlController {
     public ResponseEntity<String> saveDepartment(
             @ModelAttribute Department request
     ) {
-        var departmentForm = new DepartmentForm(null);
+        var departmentList = this.jobsService.getDepartmentList(1, 10000);
+
+        var departmentForm = new DepartmentForm(null, departmentList.getEntities());
         departmentForm.hydrateFromRequest(request);
 
         if (this.webFormService.isFormValid(departmentForm)) {
