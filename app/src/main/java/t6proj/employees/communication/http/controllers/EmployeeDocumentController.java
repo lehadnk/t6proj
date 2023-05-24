@@ -59,7 +59,7 @@ public class EmployeeDocumentController extends AbstractHtmlController {
         return ResponseEntity.ok(
                 this.renderTemplate(
                         new EditEmployeeDocumentTemplate(
-                                this.layoutFactory.createAuthorizedAdminLayout("Edit Document"),
+                                this.layoutFactory.createAuthorizedAdminLayout("Редактировать документ"),
                                 this.renderForm(employeeDocumentForm)
                         )
                 )

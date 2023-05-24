@@ -17,6 +17,7 @@ import t6proj.authorization.communication.http.RequiresAuthorizedUser;
 import t6proj.employees.EmployeesService;
 import t6proj.employees.communication.http.forms.EmployeeDocumentForm;
 import t6proj.employees.communication.http.forms.EmployeeForm;
+import t6proj.employees.communication.http.tables.EmployeeContractsTable;
 import t6proj.employees.communication.http.tables.EmployeeDocumentListTable;
 import t6proj.employees.communication.http.tables.EmployeeListTable;
 import t6proj.employees.communication.http.templates.EditEmployeeDocumentTemplate;
@@ -26,8 +27,9 @@ import t6proj.employees.communication.http.templates.ViewEmployeeTemplate;
 import t6proj.employees.dto.Employee;
 import t6proj.employees.dto.EmployeeDocument;
 import t6proj.jobs.JobsService;
-import t6proj.jobs.communication.http.templates.DepartmentListTemplate;
-import t6proj.jobs.communication.http.templates.EditDepartmentTemplate;
+import t6proj.jobs.communication.http.forms.ContractForm;
+import t6proj.jobs.communication.http.templates.EditContractTemplate;
+import t6proj.jobs.dto.Contract;
 
 @Controller
 @RequestMapping("/employees")
@@ -74,8 +76,7 @@ public class EmployeeController extends AbstractHtmlController {
     @RequiresAuthorizedUser
     public String createEmployee()
     {
-        var jobs = this.jobsService.getJobList(1, 1000);
-        var employeeForm = new EmployeeForm(null, jobs.getEntities());
+        var employeeForm = new EmployeeForm(null);
 
         employeeForm.setActionUrl("/employees/save");
 
@@ -99,15 +100,14 @@ public class EmployeeController extends AbstractHtmlController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
-        var jobs = this.jobsService.getJobList(1, 1000);
-        var employeeForm = new EmployeeForm(null, jobs.getEntities());
+        var employeeForm = new EmployeeForm(null);
 
         employeeForm.hydrateFromRequest(employee);
         employeeForm.setActionUrl("/employees/save");
 
         return this.renderTemplate(
                 new EditEmployeeTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Edit Employees"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Редактировать сотрудника"),
                         this.renderForm(employeeForm)
                 )
         );
@@ -119,8 +119,7 @@ public class EmployeeController extends AbstractHtmlController {
     public ResponseEntity<String> saveEmployee(
             @ModelAttribute Employee request
     ) {
-        var jobs = this.jobsService.getJobList(1, 1000);
-        var employeeForm = new EmployeeForm(null, jobs.getEntities());
+        var employeeForm = new EmployeeForm(null);
         employeeForm.hydrateFromRequest(request);
 
         if (this.webFormService.isFormValid(employeeForm)) {
@@ -133,7 +132,7 @@ public class EmployeeController extends AbstractHtmlController {
         return ResponseEntity.ok(
                 this.renderTemplate(
                         new EditEmployeeTemplate(
-                                this.layoutFactory.createAuthorizedAdminLayout("Edit Employees"),
+                                this.layoutFactory.createAuthorizedAdminLayout("Редактировать сотрудника"),
                                 this.renderForm(employeeForm)
                         )
                 )
@@ -155,11 +154,15 @@ public class EmployeeController extends AbstractHtmlController {
         var employeeDocuments = this.employeesService.getEmployeeDocumentList(employee.id, page, 10);
         var documentListTable = new EmployeeDocumentListTable(employeeDocuments);
 
+        var employeeContracts = this.jobsService.getEmployeeContracts(employee.id, page, 10);
+        var employeeContractsTable = new EmployeeContractsTable(employeeContracts);
+
         return this.renderTemplate(
                 new ViewEmployeeTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("View Employee"),
                         employee,
-                        this.renderTable(documentListTable)
+                        this.renderTable(documentListTable),
+                        this.renderTable(employeeContractsTable)
                 )
         );
     }
@@ -186,6 +189,35 @@ public class EmployeeController extends AbstractHtmlController {
         return this.renderTemplate(
                 new EditEmployeeDocumentTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Create Employee"),
+                        this.renderForm(employeeDocumentForm)
+                )
+        );
+    }
+
+    @GetMapping("/{id}/add-contract")
+    @ResponseBody
+    @RequiresAuthorizedUser
+    public String createEmployeeContract(
+            @PathVariable("id") Integer employeeId
+    )
+    {
+        var employee = this.employeesService.getEmployeeById(employeeId);
+        if (employee == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        var contract = new Contract();
+        contract.employeeId = employeeId;
+
+        var jobs = this.jobsService.getJobList(1, 10000);
+
+        var employeeDocumentForm = new ContractForm(null, employeeId, jobs.getEntities());
+        employeeDocumentForm.hydrateFromRequest(contract);
+        employeeDocumentForm.setActionUrl("/contracts/save");
+
+        return this.renderTemplate(
+                new EditContractTemplate(
+                        this.layoutFactory.createAuthorizedAdminLayout("Добавить контракт"),
                         this.renderForm(employeeDocumentForm)
                 )
         );

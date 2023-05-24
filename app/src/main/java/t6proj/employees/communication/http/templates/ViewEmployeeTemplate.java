@@ -10,11 +10,13 @@ public class ViewEmployeeTemplate extends AbstractAuthorizedAdminLayoutTemplate 
     public ViewEmployeeTemplate(
             AuthorizedAdminLayout layout,
             Employee employee,
-            String documentListTable
+            String documentListTable,
+            String contractListTable
     ) {
         super(layout);
         this.context.setVariable("employee", employee);
         this.context.setVariable("documentListTable", documentListTable);
+        this.context.setVariable("contractListTable", contractListTable);
     }
 
     @Override

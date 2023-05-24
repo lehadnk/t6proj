@@ -34,7 +34,7 @@ public class EmployeeRequestDao {
         return new PaginatedEntityList<>(
                 dtoList,
                 page,
-                (int) Math.ceil(employeeDocumentsCount / pageSize)
+                (int) Math.ceil((double) employeeDocumentsCount / pageSize)
         );
     }
 
@@ -51,7 +51,7 @@ public class EmployeeRequestDao {
         return new PaginatedEntityList<>(
                 dtoList,
                 page,
-                (int) Math.ceil(employeeDocumentsCount / pageSize)
+                (int) Math.ceil((double) employeeDocumentsCount / pageSize)
         );
     }
 

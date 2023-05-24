@@ -13,8 +13,6 @@ public class Employee {
     public String lastName;
     public LocalDateTime birthdate;
     public LocalDateTime employedAt;
-    public Integer jobId;
-    public String jobTitle;
     public Integer departmentId;
     public Integer departmentTitle;
 }

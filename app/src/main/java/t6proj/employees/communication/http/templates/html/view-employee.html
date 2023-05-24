@@ -5,3 +5,11 @@
 </div>
 
 <div th:utext="${documentListTable}"></div>
+
+<div class="row">
+    <div class="col-sm-3">
+        <a class="btn btn-block btn-secondary mb-3" th:href="'/employees/' + ${employee.id} + '/add-contract'">Добавить Контракт</a>
+    </div>
+</div>
+
+<div th:utext="${contractListTable}"></div>

@@ -41,7 +41,7 @@ public class EmployeeDocumentDao {
         return new PaginatedEntityList<>(
                 dtoList,
                 page,
-                (int) Math.ceil(employeeDocumentsCount / pageSize)
+                (int) Math.ceil((double) employeeDocumentsCount / pageSize)
         );
     }
 

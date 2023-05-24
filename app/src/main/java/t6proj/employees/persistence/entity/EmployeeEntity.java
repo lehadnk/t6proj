@@ -13,9 +13,6 @@ public class EmployeeEntity {
     @Column(name="id")
     public Integer id;
 
-    @Column(name="job_id")
-    public Integer jobId;
-
     @Column(name="employed_at")
     public Date employedAt;
 

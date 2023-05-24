@@ -14,7 +14,7 @@ public class EmployeeDocumentListTable extends AbstractTable<EmployeeDocument> {
 
     @Override
     public String getTitle() {
-        return "Документы сотрудников";
+        return "Документы сотрудника";
     }
 
     @Override
