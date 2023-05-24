@@ -6,24 +6,31 @@ import t6proj.framework.dto.PaginatedEntityList;
 import t6proj.jobs.dto.Contract;
 import t6proj.jobs.persistence.mapper.ContractMapper;
 import t6proj.jobs.persistence.repository.ContractRepository;
+import t6proj.jobs.persistence.repository.JobRepository;
 
 import java.util.ArrayList;
 
 @Component
 public class ContractDao {
     private final ContractRepository repository;
+    private final JobRepository jobRepository;
     private final ContractMapper mapper = ContractMapper.INSTANCE;
 
     public ContractDao(
-            ContractRepository contractRepository
+            ContractRepository contractRepository,
+            JobRepository jobRepository
     ) {
         this.repository = contractRepository;
+        this.jobRepository = jobRepository;
     }
 
     public Contract saveContract(Contract contract)
     {
         var entity = this.mapper.dtoToEntity(contract);
-        entity.job.id = contract.jobId;
+        if (contract.jobId != null) {
+            entity.job = this.jobRepository.getReferenceById(contract.jobId);
+        }
+
         this.repository.save(entity);
 
         contract.id = entity.id;

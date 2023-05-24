@@ -6,4 +6,6 @@ import lombok.Setter;
 public class Department {
     public Integer id;
     public String title;
+    public Integer parentDepartmentId;
+    public String parentDepartmentTitle;
 }

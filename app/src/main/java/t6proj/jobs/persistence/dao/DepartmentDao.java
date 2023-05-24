@@ -21,6 +21,10 @@ public class DepartmentDao {
 
     public Department saveDepartment(Department dto) {
         var entity = this.mapper.dtoToEntity(dto);
+        if (dto.parentDepartmentId != null) {
+            entity.parentDepartment = this.repository.getReferenceById(dto.parentDepartmentId);
+        }
+
         this.repository.save(entity);
 
         dto.id = entity.id;
@@ -34,7 +38,9 @@ public class DepartmentDao {
 
         var dtoList = new ArrayList<Department>(departmentEntityList.size());
         for(var departmentEntity : departmentEntityList) {
-            dtoList.add(this.mapper.entityToDto(departmentEntity));
+            var dto = this.mapper.entityToDto(departmentEntity);
+            dto.parentDepartmentTitle = departmentEntity.parentDepartment != null ? departmentEntity.parentDepartment.title : null;
+            dtoList.add(dto);
         }
 
         return new PaginatedEntityList<>(
