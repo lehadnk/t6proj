@@ -41,32 +41,6 @@ public class EmployeeDocumentController extends AbstractHtmlController {
         this.employeesService = employeesService;
     }
 
-//    @GetMapping("/{id}/edit")
-//    @ResponseBody
-//    @RequiresAuthorizedUser
-//    public String editEmployee(
-//            @PathVariable("id") Integer id
-//    )
-//    {
-//        var employee = this.employeesService.getEmployeeById(id);
-//        if (employee == null) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-//        }
-//
-//        var jobs = this.jobsService.getJobList(1, 1000);
-//        var employeeForm = new EmployeeForm(null, jobs.getEntities());
-//
-//        employeeForm.hydrateFromRequest(employee);
-//        employeeForm.setActionUrl("/employees/save");
-//
-//        return this.renderTemplate(
-//                new EditEmployeeTemplate(
-//                        this.layoutFactory.createAuthorizedAdminLayout("Edit Employees"),
-//                        this.renderForm(employeeForm)
-//                )
-//        );
-//    }
-//
     @PostMapping("/save")
     @ResponseBody
     @RequiresAuthorizedUser

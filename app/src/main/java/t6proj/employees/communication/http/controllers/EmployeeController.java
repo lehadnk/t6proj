@@ -142,6 +142,7 @@ public class EmployeeController extends AbstractHtmlController {
 
     @GetMapping("/{id}/view")
     @ResponseBody
+    @RequiresAuthorizedUser
     public String viewEmployee(
             @PathVariable("id") Integer id,
             @RequestParam(value = "page", defaultValue = "1") Integer page

@@ -6,8 +6,12 @@ import adminlte.html_controller.communication.http.layout.authorized_admin.Autho
 public class EmployeeRequestListTemplate extends AbstractAuthorizedAdminLayoutTemplate {
     private String templatePath = "employees/communication/http/templates/html/employee-request-list.html";
 
-    public EmployeeRequestListTemplate(AuthorizedAdminLayout layout) {
+    public EmployeeRequestListTemplate(
+            AuthorizedAdminLayout layout,
+            String tableContents
+    ) {
         super(layout);
+        this.context.setVariable("tableContents", tableContents);
     }
 
     @Override
