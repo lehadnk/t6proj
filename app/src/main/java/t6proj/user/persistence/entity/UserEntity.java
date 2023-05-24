@@ -6,8 +6,8 @@ import jakarta.persistence.*;
 @Table(name="users")
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ts_admin_id_seq")
-    @SequenceGenerator(name = "ts_admin_id_seq", sequenceName = "ts_admin_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
+    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
     @Column(name="id")
     public Integer id;
 
