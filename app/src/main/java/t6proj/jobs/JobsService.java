@@ -44,4 +44,8 @@ public class JobsService {
     {
         return this.departmentDao.getDepartmentById(id);
     }
+
+    public Job getJobById(Integer id) {
+        return this.jobDao.getJobById(id);
+    }
 }

@@ -43,4 +43,9 @@ public class JobDao {
                 (int) Math.ceil(departmentsCount / pageSize)
         );
     }
+
+    public Job getJobById(Integer id) {
+        var entity = this.repository.getJobById(id);
+        return this.mapper.entityToDto(entity);
+    }
 }

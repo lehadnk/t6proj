@@ -13,4 +13,7 @@ public class JobEntity {
 
     @Column(name="title")
     public String title;
+
+    @Column(name="department_id")
+    public String departmentId;
 }

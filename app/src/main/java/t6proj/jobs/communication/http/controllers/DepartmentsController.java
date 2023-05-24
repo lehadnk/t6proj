@@ -61,7 +61,7 @@ public class DepartmentsController extends AbstractHtmlController {
     @GetMapping("/create")
     @ResponseBody
     @RequiresAuthorizedUser
-    public String getCreateDepartment()
+    public String createDepartment()
     {
         var departmentForm = new DepartmentForm(null);
         departmentForm.setActionUrl("/departments/save");
@@ -77,7 +77,7 @@ public class DepartmentsController extends AbstractHtmlController {
     @GetMapping("/{id}/edit")
     @ResponseBody
     @RequiresAuthorizedUser
-    public String getEditDepartment(
+    public String editDepartment(
             @PathVariable("id") Integer id
     )
     {
@@ -92,7 +92,7 @@ public class DepartmentsController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new EditDepartmentTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Create Department"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Edit Department"),
                         this.renderForm(departmentForm)
                 )
         );
@@ -117,7 +117,7 @@ public class DepartmentsController extends AbstractHtmlController {
         return ResponseEntity.ok(
                 this.renderTemplate(
                         new EditDepartmentTemplate(
-                                this.layoutFactory.createAuthorizedAdminLayout("Create Department"),
+                                this.layoutFactory.createAuthorizedAdminLayout("Edit Department"),
                                 this.renderForm(departmentForm)
                         )
                 )
