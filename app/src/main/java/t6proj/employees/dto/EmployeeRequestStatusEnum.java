@@ -1,5 +1,5 @@
 package t6proj.employees.dto;
 
-public enum EmployeeRequestStatus {
+public enum EmployeeRequestStatusEnum {
     OPEN, IN_PROGRESS, CLOSED
 }

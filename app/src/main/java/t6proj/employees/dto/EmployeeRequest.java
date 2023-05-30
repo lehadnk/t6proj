@@ -4,6 +4,6 @@ public class EmployeeRequest {
     public Integer id;
     public String title;
     public String text;
-    public EmployeeRequestStatus status;
+    public EmployeeRequestStatusEnum status;
     public String authorName;
 }

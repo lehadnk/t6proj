@@ -26,7 +26,7 @@ public class EmployeeRequestListTable extends AbstractTable<EmployeeRequest> {
         this.columns.add(new TextColumn("title").setTitle("Заголовок"));
 
         var actionButtons = new ArrayList<ActionButton>();
-        actionButtons.add(new ActionButton("Документы", "/employee-requests/<:id>", "id"));
+        actionButtons.add(new ActionButton("Открыть", "/employee-requests/<:id>", "id"));
         this.columns.add(new ActionsColumn(actionButtons));
     }
 }

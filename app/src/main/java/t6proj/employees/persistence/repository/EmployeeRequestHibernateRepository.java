@@ -6,12 +6,9 @@ import t6proj.employees.persistence.entity.EmployeeRequestEntity;
 
 import java.util.List;
 
-public interface EmployeeRequestRepository extends JpaRepository<EmployeeRequestEntity, Integer> {
+public interface EmployeeRequestHibernateRepository extends JpaRepository<EmployeeRequestEntity, Integer> {
     @Query(value = "SELECT * FROM employee_requests WHERE employee_id = :employeeId LIMIT :limit OFFSET :offset", nativeQuery = true)
     List<EmployeeRequestEntity> getEmployeeRequestListByEmployee(Integer employeeId, int limit, int offset);
-
-    @Query(value = "SELECT * FROM employee_requests LIMIT :limit OFFSET :offset", nativeQuery = true)
-    List<EmployeeRequestEntity> getEmployeeRequestList(int limit, int offset);
 
     @Query("SELECT count(*) FROM EmployeeRequestEntity r WHERE r.employeeId = :employeeId")
     Integer getEmployeeRequestsCountByEmployee(Integer employeeId);

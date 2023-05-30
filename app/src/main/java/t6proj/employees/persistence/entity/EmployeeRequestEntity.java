@@ -1,7 +1,9 @@
 package t6proj.employees.persistence.entity;
 
 import jakarta.persistence.*;
-import t6proj.employees.dto.EmployeeRequestStatus;
+import t6proj.employees.dto.EmployeeRequestStatusEnum;
+
+import java.util.Date;
 
 @Entity
 @Table(name="employee_requests")
@@ -16,10 +18,10 @@ public class EmployeeRequestEntity {
     public Integer employeeId;
 
     @Column(name="opened_at")
-    public Integer opened_at;
+    public Date openedAt;
 
     @Column(name="status")
-    public EmployeeRequestStatus status;
+    public EmployeeRequestStatusEnum status;
 
     @Column(name="title")
     public String title;
