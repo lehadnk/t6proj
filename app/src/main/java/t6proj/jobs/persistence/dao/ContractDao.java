@@ -4,61 +4,50 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import t6proj.framework.dto.PaginatedEntityList;
 import t6proj.jobs.dto.Contract;
+import t6proj.jobs.dto.EmployeeContract;
 import t6proj.jobs.persistence.mapper.ContractMapper;
-import t6proj.jobs.persistence.repository.ContractRepository;
-import t6proj.jobs.persistence.repository.JobRepository;
+import t6proj.jobs.persistence.repository.ContractHibernateRepository;
+import t6proj.jobs.persistence.repository.ContractJpaRepository;
 
 import java.util.ArrayList;
 
 @Component
 public class ContractDao {
-    private final ContractRepository repository;
-    private final JobRepository jobRepository;
+    private final ContractHibernateRepository hibernateRepository;
+    private final ContractJpaRepository jpaRepository;
     private final ContractMapper mapper = ContractMapper.INSTANCE;
 
     public ContractDao(
-            ContractRepository contractRepository,
-            JobRepository jobRepository
+            ContractHibernateRepository contractHibernateRepository,
+            ContractJpaRepository jpaRepository
     ) {
-        this.repository = contractRepository;
-        this.jobRepository = jobRepository;
+        this.hibernateRepository = contractHibernateRepository;
+        this.jpaRepository = jpaRepository;
     }
 
     public Contract saveContract(Contract contract)
     {
         var entity = this.mapper.dtoToEntity(contract);
-        if (contract.jobId != null) {
-            entity.job = this.jobRepository.getReferenceById(contract.jobId);
-        }
-
-        this.repository.save(entity);
+        this.hibernateRepository.save(entity);
 
         contract.id = entity.id;
         return contract;
     }
 
-    public PaginatedEntityList<Contract> getEmployeeContractList(int employeeId, int page, int pageSize) {
-        var pageable = PageRequest.of(page - 1, pageSize);
-        var contractEntityList = this.repository.getEmployeeContractList(employeeId, pageable);
-        var contractsCount = this.repository.getEmployeeContractCount();
-
-        var dtoList = new ArrayList<Contract>(contractEntityList.size());
-        for(var contractEntity : contractEntityList) {
-            var dto = this.mapper.entityToDto(contractEntity);
-            dto.jobTitle = contractEntity.job.title;
-            dtoList.add(dto);
-        }
+    public PaginatedEntityList<EmployeeContract> getEmployeeContractList(int employeeId, int page, int pageSize) {
+        var employeeContractList = this.jpaRepository.getEmployeeContracts(employeeId, pageSize, (page - 1) * pageSize);
+        var employeeContractsCount = this.hibernateRepository.getEmployeeContractCount(employeeId);
 
         return new PaginatedEntityList<>(
-                dtoList,
+                employeeContractList,
                 page,
-                (int) Math.ceil((double) contractsCount / pageSize)
+                (int) Math.ceil((double) employeeContractsCount / pageSize)
         );
     }
 
     public Contract getContractById(Integer id)
     {
-        var entity = this.repository.getContractById(id);
+        var entity = this.hibernateRepository.getContractById(id);
         return this.mapper.entityToDto(entity);
     }
 }

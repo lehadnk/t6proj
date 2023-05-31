@@ -5,13 +5,13 @@ import adminlte.entity_list_table.communication.http.tables.AbstractTable;
 import adminlte.entity_list_table.communication.http.tables.columns.ActionButton;
 import adminlte.entity_list_table.communication.http.tables.columns.ActionsColumn;
 import adminlte.entity_list_table.communication.http.tables.columns.TextColumn;
-import t6proj.jobs.dto.Contract;
+import t6proj.jobs.dto.EmployeeContract;
 
 import java.util.ArrayList;
 
-public class EmployeeContractsTable extends AbstractTable<Contract> {
+public class EmployeeContractsTable extends AbstractTable<EmployeeContract> {
     public EmployeeContractsTable(
-            PaginatedEntityListInterface<Contract> entityPaginatedList
+            PaginatedEntityListInterface<EmployeeContract> entityPaginatedList
     ) {
         super(entityPaginatedList);
     }
@@ -25,6 +25,7 @@ public class EmployeeContractsTable extends AbstractTable<Contract> {
     public void defineColumns() {
         this.columns.add(new TextColumn("id").setTitle("ID"));
         this.columns.add(new TextColumn("jobTitle").setTitle("Название рабочей должности"));
+        this.columns.add(new TextColumn("departmentTitle").setTitle("Название отдела"));
         this.columns.add(new TextColumn("startsAt").setTitle("От"));
         this.columns.add(new TextColumn("endsAt").setTitle("До"));
 

@@ -21,5 +21,6 @@ public class EmployeeDocumentListTable extends AbstractTable<EmployeeDocument> {
     public void defineColumns() {
         this.columns.add(new TextColumn("id").setTitle("ID"));
         this.columns.add(new TextColumn("documentType").setTitle("Тип документа"));
+        this.columns.add(new TextColumn("url").setTitle("Ссылка на документ"));
     }
 }

@@ -16,6 +16,9 @@ public class ContractEntity {
     @Column(name="employee_id")
     public Integer employeeId;
 
+    @Column(name="job_Id")
+    public Integer jobId;
+
     @Column(name="starts_at")
     public Date startsAt;
 
@@ -27,8 +30,4 @@ public class ContractEntity {
 
     @Column(name="terms")
     public String terms;
-
-    @ManyToOne
-    @JoinColumn(name="job_id")
-    public JobEntity job;
 }

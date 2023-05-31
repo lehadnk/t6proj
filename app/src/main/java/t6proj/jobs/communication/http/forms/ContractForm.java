@@ -12,18 +12,19 @@ public class ContractForm extends AbstractWebForm<Contract> {
     public ContractForm(Integer id, Integer employeeId, List<Job> jobs)
     {
         this.elements.put("id", new Hidden().setValue(id != null ? id.toString() : null));
-        this.elements.put("employeeId", new Hidden().setValue(id != null ? id.toString() : null));
-        this.elements.put("terms", new Textarea().setRequired().setLabel("Условия договора"));
-        this.elements.put("startsAt", new DateTime().setLabel("Дата начала"));
+        this.elements.put("employeeId", new Hidden().setValue(employeeId != null ? employeeId.toString() : null));
+        this.elements.put("terms", new Textarea().setRequired().setLabel("Условия договора").setRequired());
+        this.elements.put("startsAt", new DateTime().setLabel("Дата начала").setRequired());
         this.elements.put("endsAt", new DateTime().setLabel("Дата окончания"));
-        this.elements.put("salary", new Input().setType("number").setLabel("Зарплата"));
+        this.elements.put("salary", new Input().setType("number").setLabel("Зарплата").setRequired());
 
         var jobOptions = new HashMap<String, String>();
         for(var job : jobs) {
             jobOptions.put(job.id.toString(), job.title);
         }
-        this.elements.put("jobId", new Select(jobOptions).setLabel("Рабочая должность"));
+        this.elements.put("jobId", new Select(jobOptions).setLabel("Рабочая должность").setRequired());
 
         this.submitButton = new Submit("Сохранить");
+        this.actionUrl = "/contracts/save";
     }
 }

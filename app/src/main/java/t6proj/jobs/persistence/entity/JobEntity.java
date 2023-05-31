@@ -15,5 +15,5 @@ public class JobEntity {
     public String title;
 
     @Column(name="department_id")
-    public String departmentId;
+    public Integer departmentId;
 }

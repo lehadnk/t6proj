@@ -82,7 +82,6 @@ public class ContractsController extends AbstractHtmlController {
 
         var contractForm = new ContractForm(id, contract.employeeId, jobs.getEntities());
         contractForm.hydrateFromRequest(contract);
-        contractForm.setActionUrl("/contract/save");
 
         return this.renderTemplate(
                 new EditContractTemplate(

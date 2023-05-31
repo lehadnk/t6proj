@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import t6proj.framework.dto.PaginatedEntityList;
 import t6proj.jobs.dto.Contract;
 import t6proj.jobs.dto.Department;
+import t6proj.jobs.dto.EmployeeContract;
 import t6proj.jobs.dto.Job;
 import t6proj.jobs.persistence.dao.ContractDao;
 import t6proj.jobs.persistence.dao.DepartmentDao;
@@ -59,7 +60,7 @@ public class JobsService {
         return this.contractDao.getContractById(id);
     }
 
-    public PaginatedEntityList<Contract> getEmployeeContracts(Integer employeeId, Integer page, Integer pageSize)
+    public PaginatedEntityList<EmployeeContract> getEmployeeContracts(Integer employeeId, Integer page, Integer pageSize)
     {
         return this.contractDao.getEmployeeContractList(employeeId, page, pageSize);
     }

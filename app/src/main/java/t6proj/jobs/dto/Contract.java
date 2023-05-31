@@ -9,7 +9,6 @@ public class Contract {
     public Integer id;
     public Integer employeeId;
     public Integer jobId;
-    public String jobTitle;
     public Double salary;
     public LocalDateTime startsAt;
     public LocalDateTime endsAt;
