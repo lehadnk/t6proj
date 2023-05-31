@@ -1,16 +1,11 @@
 package t6proj.jobs.persistence.repository;
 
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import t6proj.jobs.persistence.entity.DepartmentEntity;
 
-import java.util.List;
 
 public interface DepartmentHibernateRepository extends JpaRepository<DepartmentEntity, Integer> {
-    @Query(value = "SELECT d FROM DepartmentEntity d")
-    List<DepartmentEntity> getDepartmentList(Pageable pageable);
-
     @Query("SELECT count(*) FROM DepartmentEntity")
     Integer getDepartmentsCount();
 

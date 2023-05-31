@@ -23,7 +23,7 @@ public class ReportsDao {
 
     public PaginatedEntityList<EndOfContractReportRow> getExpiringContractsReport(int page, int pageSize) {
         var offset = (page - 1) * pageSize;
-        var reportRows = this.reportsRepository.getExpiringContracts(offset, pageSize);
+        var reportRows = this.reportsRepository.getExpiringContracts(pageSize, offset);
         var reportRowsCount = this.reportsRepository.countExpiringContracts();
 
         return new PaginatedEntityList<>(

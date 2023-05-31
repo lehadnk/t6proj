@@ -15,5 +15,5 @@ public class Employee {
     public LocalDateTime employedAt;
     public Integer departmentId;
     public Integer departmentTitle;
-    public Boolean isDeleted;
+    public Boolean isDeleted = false;
 }

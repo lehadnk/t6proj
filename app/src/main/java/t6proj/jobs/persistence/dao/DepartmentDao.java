@@ -26,10 +26,6 @@ public class DepartmentDao {
 
     public Department saveDepartment(Department dto) {
         var entity = this.mapper.dtoToEntity(dto);
-        if (dto.parentDepartmentId != null) {
-            entity.parentDepartment = this.hibernateRepository.getReferenceById(dto.parentDepartmentId);
-        }
-
         this.hibernateRepository.save(entity);
 
         dto.id = entity.id;
@@ -37,19 +33,11 @@ public class DepartmentDao {
     }
 
     public PaginatedEntityList<Department> getDepartmentList(int page, int pageSize) {
-        var pageable = PageRequest.of(page - 1, pageSize);
-        var departmentEntityList = this.hibernateRepository.getDepartmentList(pageable);
+        var departmentList = this.jpaRepository.getDepartmentList(pageSize, (page - 1) * pageSize);
         var departmentsCount = this.hibernateRepository.getDepartmentsCount();
 
-        var dtoList = new ArrayList<Department>(departmentEntityList.size());
-        for(var departmentEntity : departmentEntityList) {
-            var dto = this.mapper.entityToDto(departmentEntity);
-            dto.parentDepartmentTitle = departmentEntity.parentDepartment != null ? departmentEntity.parentDepartment.title : null;
-            dtoList.add(dto);
-        }
-
         return new PaginatedEntityList<>(
-                dtoList,
+                departmentList,
                 page,
                 (int) Math.ceil((double) departmentsCount / pageSize)
         );

@@ -15,7 +15,6 @@ public class DepartmentEntity {
     @Column(name="title")
     public String title;
 
-    @ManyToOne
-    @JoinColumn(name="parent_department_id")
-    public DepartmentEntity parentDepartment;
+    @Column(name="parent_department_id")
+    public Integer parentDepartmentId;
 }
