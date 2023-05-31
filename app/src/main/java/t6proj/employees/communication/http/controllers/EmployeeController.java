@@ -125,7 +125,8 @@ public class EmployeeController extends AbstractHtmlController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
-        this.employeesService.deleteEmployee(id);
+        employee.isDeleted = true;
+        this.employeesService.saveEmployee(employee);
         this.addSuccessMessage("Сотрудник был удален.");
         return this.redirect("/employees/");
     }

@@ -51,8 +51,4 @@ public class EmployeeDao {
         var employeeEntity = this.repository.getEmployeeById(id);
         return this.mapper.entityToDto(employeeEntity);
     }
-
-    public void deleteEmployee(Integer id) {
-        this.repository.deleteById(id);
-    }
 }

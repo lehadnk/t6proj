@@ -62,8 +62,4 @@ public class EmployeesService {
     public Integer getEmployeeRequestsCount() {
         return this.employeeRequestDao.getEmployeeRequestCount();
     }
-
-    public void deleteEmployee(Integer id) {
-        this.employeeDao.deleteEmployee(id);
-    }
 }
