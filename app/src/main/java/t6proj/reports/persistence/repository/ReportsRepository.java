@@ -28,7 +28,10 @@ public class ReportsRepository {
                 FROM contracts c
                 JOIN employees e ON c.employee_id = e.id
                 JOIN jobs j on c.job_id = j.id
-                JOIN departments d on j.department_id = d.id;
+                JOIN departments d on j.department_id = d.id
+                WHERE c.ends_at < now() - interval '3 months' AND c.ends_at > now()
+                LIMIT ?
+                OFFSET ?
         """;
 
         return this.jdbcTemplate.query(query, (rs, i) -> {
@@ -39,7 +42,7 @@ public class ReportsRepository {
             result.jobTitle = rs.getString(4);
             result.departmentName = rs.getString(5);
             return result;
-        });
+        }, limit, offset);
     }
 
     public Integer countExpiringContracts()
@@ -50,7 +53,8 @@ public class ReportsRepository {
                 FROM contracts c
                 JOIN employees e ON c.employee_id = e.id
                 JOIN jobs j on c.job_id = j.id
-                JOIN departments d on j.department_id::int = d.id;
+                JOIN departments d on j.department_id::int = d.id
+                WHERE c.ends_at < now() - interval '3 months' AND c.ends_at > now()
         """;
 
         return this.jdbcTemplate.queryForObject(query, Integer.class);
