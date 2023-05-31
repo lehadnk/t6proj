@@ -113,6 +113,23 @@ public class EmployeeController extends AbstractHtmlController {
         );
     }
 
+    @GetMapping("/{id}/delete")
+    @ResponseBody
+    @RequiresAuthorizedUser
+    public ResponseEntity<String> deleteEmployee(
+            @PathVariable("id") Integer id
+    )
+    {
+        var employee = this.employeesService.getEmployeeById(id);
+        if (employee == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        this.employeesService.deleteEmployee(id);
+        this.addSuccessMessage("Сотрудник был удален.");
+        return this.redirect("/employees/");
+    }
+
     @PostMapping("/save")
     @ResponseBody
     @RequiresAuthorizedUser

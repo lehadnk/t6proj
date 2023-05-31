@@ -1,5 +1,6 @@
 package t6proj.employees.persistence.repository;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import t6proj.employees.persistence.entity.EmployeeRequestEntity;
@@ -7,8 +8,8 @@ import t6proj.employees.persistence.entity.EmployeeRequestEntity;
 import java.util.List;
 
 public interface EmployeeRequestHibernateRepository extends JpaRepository<EmployeeRequestEntity, Integer> {
-    @Query(value = "SELECT * FROM employee_requests WHERE employee_id = :employeeId LIMIT :limit OFFSET :offset", nativeQuery = true)
-    List<EmployeeRequestEntity> getEmployeeRequestListByEmployee(Integer employeeId, int limit, int offset);
+    @Query(value = "SELECT e FROM EmployeeRequestEntity e WHERE e.employeeId = :employeeId")
+    List<EmployeeRequestEntity> getEmployeeRequestListByEmployee(Integer employeeId, Pageable pageable);
 
     @Query("SELECT count(*) FROM EmployeeRequestEntity r WHERE r.employeeId = :employeeId")
     Integer getEmployeeRequestsCountByEmployee(Integer employeeId);
@@ -16,6 +17,6 @@ public interface EmployeeRequestHibernateRepository extends JpaRepository<Employ
     @Query("SELECT count(*) FROM EmployeeRequestEntity r")
     Integer getEmployeeRequestsCount();
 
-    @Query("SELECT r FROM EmployeeRequestEntity r WHERE r.id = :id")
+    @Query("SELECT e FROM EmployeeRequestEntity e WHERE e.id = :id")
     EmployeeRequestEntity getEmployeeRequestsById(Integer id);
 }

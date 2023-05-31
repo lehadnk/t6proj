@@ -27,4 +27,7 @@ public class EmployeeEntity {
 
     @Column(name="last_name")
     public String lastName;
+
+    @Column(name="is_deleted")
+    public Boolean isDeleted;
 }

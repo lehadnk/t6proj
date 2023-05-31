@@ -29,6 +29,7 @@ public class EmployeeListTable extends AbstractTable<Employee> {
         var actionButtons = new ArrayList<ActionButton>();
         actionButtons.add(new ActionButton("Документы", "/employees/<:id>/view", "id"));
         actionButtons.add(new ActionButton("Редактировать", "/employees/<:id>/edit", "id"));
+        actionButtons.add(new ActionButton("Удалить", "/employees/<:id>/delete", "id"));
         this.columns.add(new ActionsColumn(actionButtons));
     }
 }
