@@ -6,7 +6,7 @@ import t6proj.jobs.persistence.entity.JobEntity;
 
 import java.util.List;
 
-public interface JobRepository extends JpaRepository<JobEntity, Integer> {
+public interface JobHibernateRepository extends JpaRepository<JobEntity, Integer> {
     @Query(value = "SELECT * FROM jobs LIMIT :limit OFFSET :offset", nativeQuery = true)
     List<JobEntity> getJobsList(int limit, int offset);
 

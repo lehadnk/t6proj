@@ -69,4 +69,9 @@ public class JobsService {
     {
         return this.contractDao.saveContract(contract);
     }
+
+    public Boolean isChildToDepartment(Integer departmentId, Integer possibleChildId)
+    {
+        return this.departmentDao.isChildToDepartment(departmentId, possibleChildId);
+    }
 }

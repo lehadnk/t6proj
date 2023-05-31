@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import t6proj.authorization.communication.http.RequiresAuthorizedUser;
 import t6proj.jobs.JobsService;
 import t6proj.jobs.communication.http.forms.DepartmentForm;
+import t6proj.jobs.communication.http.forms.validators.ParentDepartmentIdValidator;
 import t6proj.jobs.communication.http.tables.DepartmentsTable;
 import t6proj.jobs.communication.http.templates.DepartmentListTemplate;
 import t6proj.jobs.communication.http.templates.EditDepartmentTemplate;
@@ -65,7 +66,11 @@ public class DepartmentsController extends AbstractHtmlController {
     {
         var departments = this.jobsService.getDepartmentList(1, 10000);
 
-        var departmentForm = new DepartmentForm(null, departments.getEntities());
+        var departmentForm = new DepartmentForm(
+                null,
+                departments.getEntities(),
+                this.createParentDepartmentIdValidator(null)
+        );
         departmentForm.setActionUrl("/departments/save");
 
         return this.renderTemplate(
@@ -90,7 +95,11 @@ public class DepartmentsController extends AbstractHtmlController {
 
         var departmentList = this.jobsService.getDepartmentList(1, 10000);
 
-        var departmentForm = new DepartmentForm(id, departmentList.getEntities());
+        var departmentForm = new DepartmentForm(
+                id,
+                departmentList.getEntities(),
+                this.createParentDepartmentIdValidator(id)
+        );
         departmentForm.hydrateFromRequest(department);
         departmentForm.setActionUrl("/departments/save");
 
@@ -110,7 +119,11 @@ public class DepartmentsController extends AbstractHtmlController {
     ) {
         var departmentList = this.jobsService.getDepartmentList(1, 10000);
 
-        var departmentForm = new DepartmentForm(null, departmentList.getEntities());
+        var departmentForm = new DepartmentForm(
+                request.id,
+                departmentList.getEntities(),
+                this.createParentDepartmentIdValidator(request.id)
+        );
         departmentForm.hydrateFromRequest(request);
 
         if (this.webFormService.isFormValid(departmentForm)) {
@@ -128,5 +141,11 @@ public class DepartmentsController extends AbstractHtmlController {
                         )
                 )
         );
+    }
+
+
+    private ParentDepartmentIdValidator createParentDepartmentIdValidator(Integer departmentId)
+    {
+        return new ParentDepartmentIdValidator(departmentId, this.jobsService);
     }
 }

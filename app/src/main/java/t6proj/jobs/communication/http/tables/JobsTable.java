@@ -23,6 +23,7 @@ public class JobsTable extends AbstractTable<Job> {
     public void defineColumns() {
         this.columns.add(new TextColumn("id").setTitle("ID"));
         this.columns.add(new TextColumn("title").setTitle("Название"));
+        this.columns.add(new TextColumn("departmentTitle").setTitle("Отдел"));
 
         var actionButtons = new ArrayList<ActionButton>();
         actionButtons.add(new ActionButton("Редактировать", "/jobs/<:id>/edit", "id"));
