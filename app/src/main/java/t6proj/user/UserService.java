@@ -1,6 +1,7 @@
 package t6proj.user;
 
 import org.springframework.stereotype.Service;
+import t6proj.framework.dto.PaginatedEntityList;
 import t6proj.user.dto.User;
 import t6proj.user.persistence.dao.UserDao;
 
@@ -17,5 +18,20 @@ public class UserService {
     public User getUserByEmail(String email)
     {
         return this.userDao.getUserByEmail(email);
+    }
+
+    public User getUserById(Integer id)
+    {
+        return this.userDao.getUserById(id);
+    }
+
+    public PaginatedEntityList<User> getUserList(Integer page, Integer pageSize)
+    {
+        return this.userDao.getUserList(page, pageSize);
+    }
+
+    public User saveUser(User user)
+    {
+        return this.userDao.saveUser(user);
     }
 }
