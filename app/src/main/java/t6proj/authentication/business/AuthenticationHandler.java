@@ -1,5 +1,6 @@
 package t6proj.authentication.business;
 
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import t6proj.authentication.dto.AuthenticationRequest;
 import t6proj.authentication.dto.AuthenticationResult;
@@ -7,6 +8,8 @@ import t6proj.jwt.JwtService;
 import t6proj.jwt.dto.Token;
 import t6proj.user.UserService;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.sql.Time;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -28,6 +31,7 @@ public class AuthenticationHandler {
         this.jwtService = jwtService;
     }
 
+    @SneakyThrows
     public AuthenticationResult handle(AuthenticationRequest request)
     {
         var user = this.userService.getUserByEmail(request.email);
@@ -35,8 +39,9 @@ public class AuthenticationHandler {
             return new AuthenticationResult(false, null);
         }
 
-        // @todo replace with hashing algorithm
-        if (!user.password.equals(request.password)) {
+        var digest = MessageDigest.getInstance("SHA-256");
+        var hashedPassword = new String(digest.digest(request.password.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+        if (!user.password.equals(hashedPassword)) {
             return new AuthenticationResult(false, null);
         }
 

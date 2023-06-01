@@ -1,13 +1,18 @@
 package t6proj.user.persistence.dao;
 
+import lombok.SneakyThrows;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
+import org.springframework.util.DigestUtils;
 import t6proj.framework.dto.PaginatedEntityList;
 import t6proj.user.dto.User;
 import t6proj.user.persistence.mapper.UserMapper;
 import t6proj.user.persistence.repository.UserRepository;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -32,9 +37,14 @@ public class UserDao {
         return this.mapper.entityToDto(entity);
     }
 
+    @SneakyThrows
     public User saveUser(User user)
     {
         var entity = this.mapper.dtoToEntity(user);
+        if (user.changePassword != null) {
+            var digest = MessageDigest.getInstance("SHA-256");
+            entity.password = new String(digest.digest(user.changePassword.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+        }
 
         this.repository.save(entity);
         user.id = entity.id;
