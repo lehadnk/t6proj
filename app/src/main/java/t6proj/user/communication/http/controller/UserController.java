@@ -11,9 +11,11 @@ import adminlte.html_template_renderer.HtmlTemplateRendererService;
 import adminlte.session.SessionServiceInterface;
 import adminlte.ui.business.HrefButton;
 import adminlte.web_form.WebFormService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import t6proj.authorization.communication.http.RequiresAuthorizedUser;
 import t6proj.user.UserService;
 import t6proj.user.communication.http.form.UserForm;
@@ -86,6 +88,10 @@ public class UserController extends AbstractHtmlController {
             @PathVariable("id") Integer id
     ) {
         var user = this.userService.getUserById(id);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
         var userForm = new UserForm();
         userForm.hydrateFromRequest(user);
 
@@ -95,6 +101,23 @@ public class UserController extends AbstractHtmlController {
                         this.renderForm(userForm)
                 )
         );
+    }
+
+    @GetMapping("/{id}/delete")
+    @ResponseBody
+    @RequiresAuthorizedUser
+    public ResponseEntity<String> deleteUser(
+            @PathVariable("id") Integer id
+    )
+    {
+        var user = this.userService.getUserById(id);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        this.userService.deleteUser(id);
+        this.addSuccessMessage("Пользователь успешно удален");
+        return this.redirect("/users/");
     }
 
     @PostMapping("/save")

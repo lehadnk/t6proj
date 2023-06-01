@@ -34,4 +34,8 @@ public class UserService {
     {
         return this.userDao.saveUser(user);
     }
+
+    public void deleteUser(Integer id) {
+        this.userDao.deleteUser(id);
+    }
 }

@@ -26,6 +26,7 @@ public class UserTable extends AbstractTable<User> {
 
         var actionButtons = new ArrayList<ActionButton>();
         actionButtons.add(new ActionButton("Редактировать", "/users/<:id>/edit", "id"));
+        actionButtons.add(new ActionButton("Удалить", "/users/<:id>/delete", "id"));
         this.columns.add(new ActionsColumn(actionButtons));
     }
 }

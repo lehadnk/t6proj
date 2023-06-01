@@ -58,4 +58,9 @@ public class UserDao {
                 (int) Math.ceil((double) usersCount / pageSize)
         );
     }
+
+    public void deleteUser(Integer id)
+    {
+        this.repository.deleteById(id);
+    }
 }
