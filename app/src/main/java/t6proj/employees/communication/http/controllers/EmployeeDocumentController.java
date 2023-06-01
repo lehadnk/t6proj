@@ -1,6 +1,7 @@
 package t6proj.employees.communication.http.controllers;
 
 import adminlte.authentication.AuthenticationServiceInterface;
+import adminlte.common_templates.communication.templates.AuthorizedAdminFormTemplate;
 import adminlte.entity_list_table.EntityListTableService;
 import adminlte.flash_message.FlashMessageService;
 import adminlte.html_controller.business.AbstractHtmlController;
@@ -8,18 +9,12 @@ import adminlte.html_controller.communication.http.layout.LayoutFactory;
 import adminlte.html_template_renderer.HtmlTemplateRendererService;
 import adminlte.session.SessionServiceInterface;
 import adminlte.web_form.WebFormService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import t6proj.authorization.communication.http.RequiresAuthorizedUser;
 import t6proj.employees.EmployeesService;
 import t6proj.employees.communication.http.forms.EmployeeDocumentForm;
-import t6proj.employees.communication.http.forms.EmployeeForm;
-import t6proj.employees.communication.http.templates.EditEmployeeDocumentTemplate;
-import t6proj.employees.communication.http.templates.EditEmployeeTemplate;
-import t6proj.employees.dto.Employee;
 import t6proj.employees.dto.EmployeeDocument;
 
 @Controller
@@ -58,7 +53,7 @@ public class EmployeeDocumentController extends AbstractHtmlController {
 
         return ResponseEntity.ok(
                 this.renderTemplate(
-                        new EditEmployeeDocumentTemplate(
+                        new AuthorizedAdminFormTemplate(
                                 this.layoutFactory.createAuthorizedAdminLayout("Редактировать документ"),
                                 this.renderForm(employeeDocumentForm)
                         )

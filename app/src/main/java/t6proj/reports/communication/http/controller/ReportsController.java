@@ -1,6 +1,7 @@
 package t6proj.reports.communication.http.controller;
 
 import adminlte.authentication.AuthenticationServiceInterface;
+import adminlte.common_templates.communication.templates.AuthorizedAdminTableTemplate;
 import adminlte.entity_list_table.EntityListTableService;
 import adminlte.flash_message.FlashMessageService;
 import adminlte.html_controller.business.AbstractHtmlController;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import t6proj.reports.communication.http.table.DepartmentSpendingsReportTable;
 import t6proj.reports.communication.http.table.EndOfContractReportTable;
-import t6proj.reports.communication.http.template.DepartmentSpendingsReport;
 import t6proj.authorization.communication.http.RequiresAuthorizedUser;
 import t6proj.reports.ReportsService;
 import t6proj.reports.communication.http.template.EndOfContractReportTemplate;
@@ -67,7 +67,7 @@ public class ReportsController extends AbstractHtmlController {
         var departmentSpendingsReportTable = new DepartmentSpendingsReportTable(report);
 
         return this.renderTemplate(
-                new DepartmentSpendingsReport(
+                new AuthorizedAdminTableTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Отчет о тратах отделов"),
                         this.renderTable(departmentSpendingsReportTable)
                 )

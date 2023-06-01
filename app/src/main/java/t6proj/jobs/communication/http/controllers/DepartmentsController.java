@@ -1,12 +1,15 @@
 package t6proj.jobs.communication.http.controllers;
 
 import adminlte.authentication.AuthenticationServiceInterface;
+import adminlte.common_templates.communication.templates.AuthorizedAdminFormTemplate;
+import adminlte.common_templates.communication.templates.AuthorizedAdminTableTemplate;
 import adminlte.entity_list_table.EntityListTableService;
 import adminlte.flash_message.FlashMessageService;
 import adminlte.html_controller.business.AbstractHtmlController;
 import adminlte.html_controller.communication.http.layout.LayoutFactory;
 import adminlte.html_template_renderer.HtmlTemplateRendererService;
 import adminlte.session.SessionServiceInterface;
+import adminlte.ui.business.HrefButton;
 import adminlte.web_form.WebFormService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +21,9 @@ import t6proj.jobs.JobsService;
 import t6proj.jobs.communication.http.forms.DepartmentForm;
 import t6proj.jobs.communication.http.forms.validators.ParentDepartmentIdValidator;
 import t6proj.jobs.communication.http.tables.DepartmentsTable;
-import t6proj.jobs.communication.http.templates.DepartmentListTemplate;
-import t6proj.jobs.communication.http.templates.EditDepartmentTemplate;
 import t6proj.jobs.dto.Department;
+
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/departments")
@@ -51,10 +54,14 @@ public class DepartmentsController extends AbstractHtmlController {
                 this.jobsService.getDepartmentList(page, 10)
         );
 
+        var actionButtons = new ArrayList<HrefButton>();
+        actionButtons.add(new HrefButton("Создать отдел", "/departments/create"));
+
         return this.renderTemplate(
-                new DepartmentListTemplate(
+                new AuthorizedAdminTableTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Department List"),
-                        this.renderTable(departmentsTable)
+                        this.renderTable(departmentsTable),
+                        actionButtons
                 )
         );
     }
@@ -74,8 +81,8 @@ public class DepartmentsController extends AbstractHtmlController {
         departmentForm.setActionUrl("/departments/save");
 
         return this.renderTemplate(
-                new EditDepartmentTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Create Department"),
+                new AuthorizedAdminFormTemplate(
+                        this.layoutFactory.createAuthorizedAdminLayout("Создать отдел"),
                         this.renderForm(departmentForm)
                 )
         );
@@ -104,8 +111,8 @@ public class DepartmentsController extends AbstractHtmlController {
         departmentForm.setActionUrl("/departments/save");
 
         return this.renderTemplate(
-                new EditDepartmentTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Edit Department"),
+                new AuthorizedAdminFormTemplate(
+                        this.layoutFactory.createAuthorizedAdminLayout("Редактировать отдел"),
                         this.renderForm(departmentForm)
                 )
         );
@@ -135,7 +142,7 @@ public class DepartmentsController extends AbstractHtmlController {
 
         return ResponseEntity.ok(
                 this.renderTemplate(
-                        new EditDepartmentTemplate(
+                        new AuthorizedAdminFormTemplate(
                                 this.layoutFactory.createAuthorizedAdminLayout("Edit Department"),
                                 this.renderForm(departmentForm)
                         )

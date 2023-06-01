@@ -1,6 +1,7 @@
 package t6proj.employees.communication.http.controllers;
 
 import adminlte.authentication.AuthenticationServiceInterface;
+import adminlte.common_templates.communication.templates.AuthorizedAdminTableTemplate;
 import adminlte.entity_list_table.EntityListTableService;
 import adminlte.flash_message.FlashMessageService;
 import adminlte.html_controller.business.AbstractHtmlController;
@@ -15,7 +16,6 @@ import org.springframework.web.server.ResponseStatusException;
 import t6proj.authorization.communication.http.RequiresAuthorizedUser;
 import t6proj.employees.EmployeesService;
 import t6proj.employees.communication.http.tables.EmployeeRequestListTable;
-import t6proj.employees.communication.http.templates.EmployeeRequestListTemplate;
 import t6proj.employees.communication.http.templates.ViewEmployeeRequestTemplate;
 
 @Controller
@@ -47,7 +47,7 @@ public class EmployeeRequestController extends AbstractHtmlController {
         var employeeRequestsTable = new EmployeeRequestListTable(employeeRequests);
 
         return this.renderTemplate(
-                new EmployeeRequestListTemplate(
+                new AuthorizedAdminTableTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Employee Requests"),
                         this.renderTable(employeeRequestsTable)
                 )

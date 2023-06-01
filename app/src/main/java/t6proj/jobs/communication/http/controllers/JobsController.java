@@ -1,12 +1,15 @@
 package t6proj.jobs.communication.http.controllers;
 
 import adminlte.authentication.AuthenticationServiceInterface;
+import adminlte.common_templates.communication.templates.AuthorizedAdminFormTemplate;
+import adminlte.common_templates.communication.templates.AuthorizedAdminTableTemplate;
 import adminlte.entity_list_table.EntityListTableService;
 import adminlte.flash_message.FlashMessageService;
 import adminlte.html_controller.business.AbstractHtmlController;
 import adminlte.html_controller.communication.http.layout.LayoutFactory;
 import adminlte.html_template_renderer.HtmlTemplateRendererService;
 import adminlte.session.SessionServiceInterface;
+import adminlte.ui.business.HrefButton;
 import adminlte.web_form.WebFormService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +20,9 @@ import t6proj.authorization.communication.http.RequiresAuthorizedUser;
 import t6proj.jobs.JobsService;
 import t6proj.jobs.communication.http.forms.JobForm;
 import t6proj.jobs.communication.http.tables.JobsTable;
-import t6proj.jobs.communication.http.templates.EditDepartmentTemplate;
-import t6proj.jobs.communication.http.templates.EditJobTemplate;
-import t6proj.jobs.communication.http.templates.JobsListTemplate;
 import t6proj.jobs.dto.Job;
+
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/jobs")
@@ -51,10 +53,14 @@ public class JobsController extends AbstractHtmlController {
                 this.jobsService.getJobList(page, 10)
         );
 
+        var actionButtonList = new ArrayList<HrefButton>();
+        actionButtonList.add(new HrefButton("Добавить рабочее место", "/jobs/create"));
+
         return this.renderTemplate(
-                new JobsListTemplate(
+                new AuthorizedAdminTableTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Jobs List"),
-                        this.renderTable(jobsTable)
+                        this.renderTable(jobsTable),
+                        actionButtonList
                 )
         );
     }
@@ -70,7 +76,7 @@ public class JobsController extends AbstractHtmlController {
         jobsForm.setActionUrl("/jobs/save");
 
         return this.renderTemplate(
-                new EditJobTemplate(
+                new AuthorizedAdminFormTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Create Job"),
                         this.renderForm(jobsForm)
                 )
@@ -96,7 +102,7 @@ public class JobsController extends AbstractHtmlController {
         jobForm.setActionUrl("/jobs/save");
 
         return this.renderTemplate(
-                new EditJobTemplate(
+                new AuthorizedAdminFormTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Edit Job"),
                         this.renderForm(jobForm)
                 )
@@ -123,7 +129,7 @@ public class JobsController extends AbstractHtmlController {
 
         return ResponseEntity.ok(
                 this.renderTemplate(
-                        new EditDepartmentTemplate(
+                        new AuthorizedAdminFormTemplate(
                                 this.layoutFactory.createAuthorizedAdminLayout("Edit Job"),
                                 this.renderForm(jobForm)
                         )

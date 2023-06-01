@@ -1,12 +1,15 @@
 package t6proj.employees.communication.http.controllers;
 
 import adminlte.authentication.AuthenticationServiceInterface;
+import adminlte.common_templates.communication.templates.AuthorizedAdminFormTemplate;
+import adminlte.common_templates.communication.templates.AuthorizedAdminTableTemplate;
 import adminlte.entity_list_table.EntityListTableService;
 import adminlte.flash_message.FlashMessageService;
 import adminlte.html_controller.business.AbstractHtmlController;
 import adminlte.html_controller.communication.http.layout.LayoutFactory;
 import adminlte.html_template_renderer.HtmlTemplateRendererService;
 import adminlte.session.SessionServiceInterface;
+import adminlte.ui.business.HrefButton;
 import adminlte.web_form.WebFormService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,16 +23,14 @@ import t6proj.employees.communication.http.forms.EmployeeForm;
 import t6proj.employees.communication.http.tables.EmployeeContractsTable;
 import t6proj.employees.communication.http.tables.EmployeeDocumentListTable;
 import t6proj.employees.communication.http.tables.EmployeeListTable;
-import t6proj.employees.communication.http.templates.EditEmployeeDocumentTemplate;
-import t6proj.employees.communication.http.templates.EditEmployeeTemplate;
-import t6proj.employees.communication.http.templates.EmployeeListTemplate;
 import t6proj.employees.communication.http.templates.ViewEmployeeTemplate;
 import t6proj.employees.dto.Employee;
 import t6proj.employees.dto.EmployeeDocument;
 import t6proj.jobs.JobsService;
 import t6proj.jobs.communication.http.forms.ContractForm;
-import t6proj.jobs.communication.http.templates.EditContractTemplate;
 import t6proj.jobs.dto.Contract;
+
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/employees")
@@ -63,10 +64,14 @@ public class EmployeeController extends AbstractHtmlController {
                 this.employeesService.getEmployeesList(page, 10)
         );
 
+        var actionButtonList = new ArrayList<HrefButton>();
+        actionButtonList.add(new HrefButton("Добавить сотрудника", "/employees/create"));
+
         return this.renderTemplate(
-                new EmployeeListTemplate(
+                new AuthorizedAdminTableTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Employee List"),
-                        this.renderTable(departmentsTable)
+                        this.renderTable(departmentsTable),
+                        actionButtonList
                 )
         );
     }
@@ -81,7 +86,7 @@ public class EmployeeController extends AbstractHtmlController {
         employeeForm.setActionUrl("/employees/save");
 
         return this.renderTemplate(
-                new EditEmployeeTemplate(
+                new AuthorizedAdminFormTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Create Employee"),
                         this.renderForm(employeeForm)
                 )
@@ -106,7 +111,7 @@ public class EmployeeController extends AbstractHtmlController {
         employeeForm.setActionUrl("/employees/save");
 
         return this.renderTemplate(
-                new EditEmployeeTemplate(
+                new AuthorizedAdminFormTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Редактировать сотрудника"),
                         this.renderForm(employeeForm)
                 )
@@ -149,7 +154,7 @@ public class EmployeeController extends AbstractHtmlController {
 
         return ResponseEntity.ok(
                 this.renderTemplate(
-                        new EditEmployeeTemplate(
+                        new AuthorizedAdminFormTemplate(
                                 this.layoutFactory.createAuthorizedAdminLayout("Редактировать сотрудника"),
                                 this.renderForm(employeeForm)
                         )
@@ -205,7 +210,7 @@ public class EmployeeController extends AbstractHtmlController {
         employeeDocumentForm.setActionUrl("/employee-documents/save");
 
         return this.renderTemplate(
-                new EditEmployeeDocumentTemplate(
+                new AuthorizedAdminFormTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Create Employee"),
                         this.renderForm(employeeDocumentForm)
                 )
@@ -233,7 +238,7 @@ public class EmployeeController extends AbstractHtmlController {
         employeeDocumentForm.hydrateFromRequest(contract);
 
         return this.renderTemplate(
-                new EditContractTemplate(
+                new AuthorizedAdminFormTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Добавить контракт"),
                         this.renderForm(employeeDocumentForm)
                 )

@@ -1,6 +1,7 @@
 package t6proj.jobs.communication.http.controllers;
 
 import adminlte.authentication.AuthenticationServiceInterface;
+import adminlte.common_templates.communication.templates.AuthorizedAdminFormTemplate;
 import adminlte.entity_list_table.EntityListTableService;
 import adminlte.flash_message.FlashMessageService;
 import adminlte.html_controller.business.AbstractHtmlController;
@@ -16,7 +17,6 @@ import org.springframework.web.server.ResponseStatusException;
 import t6proj.authorization.communication.http.RequiresAuthorizedUser;
 import t6proj.jobs.JobsService;
 import t6proj.jobs.communication.http.forms.ContractForm;
-import t6proj.jobs.communication.http.templates.EditContractTemplate;
 import t6proj.jobs.dto.Contract;
 
 @Controller
@@ -58,7 +58,7 @@ public class ContractsController extends AbstractHtmlController {
 
         return ResponseEntity.ok(
                 this.renderTemplate(
-                        new EditContractTemplate(
+                        new AuthorizedAdminFormTemplate(
                                 this.layoutFactory.createAuthorizedAdminLayout("Сохранить Контракт"),
                                 this.renderForm(contractForm)
                         )
@@ -84,7 +84,7 @@ public class ContractsController extends AbstractHtmlController {
         contractForm.hydrateFromRequest(contract);
 
         return this.renderTemplate(
-                new EditContractTemplate(
+                new AuthorizedAdminFormTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Редактировать контракт"),
                         this.renderForm(contractForm)
                 )

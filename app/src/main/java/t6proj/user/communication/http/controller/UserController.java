@@ -1,12 +1,15 @@
 package t6proj.user.communication.http.controller;
 
 import adminlte.authentication.AuthenticationServiceInterface;
+import adminlte.common_templates.communication.templates.AuthorizedAdminFormTemplate;
+import adminlte.common_templates.communication.templates.AuthorizedAdminTableTemplate;
 import adminlte.entity_list_table.EntityListTableService;
 import adminlte.flash_message.FlashMessageService;
 import adminlte.html_controller.business.AbstractHtmlController;
 import adminlte.html_controller.communication.http.layout.LayoutFactory;
 import adminlte.html_template_renderer.HtmlTemplateRendererService;
 import adminlte.session.SessionServiceInterface;
+import adminlte.ui.business.HrefButton;
 import adminlte.web_form.WebFormService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,9 +18,9 @@ import t6proj.authorization.communication.http.RequiresAuthorizedUser;
 import t6proj.user.UserService;
 import t6proj.user.communication.http.form.UserForm;
 import t6proj.user.communication.http.table.UserTable;
-import t6proj.user.communication.http.templates.EditUserTemplate;
-import t6proj.user.communication.http.templates.UserListTemplate;
 import t6proj.user.dto.User;
+
+import java.util.ArrayList;
 
 @RequestMapping("/users/")
 @Controller
@@ -46,12 +49,17 @@ public class UserController extends AbstractHtmlController {
     ) {
         var userList = this.userService.getUserList(page, 20);
 
+
+        var actionButtons = new ArrayList<HrefButton>();
+        actionButtons.add(new HrefButton("Создать пользователя", "/users/create"));
+
         return this.renderTemplate(
-                new UserListTemplate(
+                new AuthorizedAdminTableTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Список пользователей"),
                         this.renderTable(
                                 new UserTable(userList)
-                        )
+                        ),
+                        actionButtons
                 )
         );
     }
@@ -64,7 +72,7 @@ public class UserController extends AbstractHtmlController {
         var userForm = new UserForm();
 
         return this.renderTemplate(
-                new EditUserTemplate(
+                new AuthorizedAdminFormTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Создание пользователя"),
                         this.renderForm(userForm)
                 )
@@ -82,7 +90,7 @@ public class UserController extends AbstractHtmlController {
         userForm.hydrateFromRequest(user);
 
         return this.renderTemplate(
-                new EditUserTemplate(
+                new AuthorizedAdminFormTemplate(
                         this.layoutFactory.createAuthorizedAdminLayout("Редактирование пользователя"),
                         this.renderForm(userForm)
                 )
@@ -107,12 +115,12 @@ public class UserController extends AbstractHtmlController {
         }
 
         return ResponseEntity.ok(
-                    this.renderTemplate(
-                    new EditUserTemplate(
+                this.renderTemplate(
+                        new AuthorizedAdminFormTemplate(
                             this.layoutFactory.createAuthorizedAdminLayout("Редактирование пользователя"),
                             this.renderForm(userForm)
-                    )
-            )
+                        )
+                )
         );
     }
 }
