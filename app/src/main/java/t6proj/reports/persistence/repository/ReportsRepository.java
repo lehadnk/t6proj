@@ -54,7 +54,7 @@ public class ReportsRepository {
                 JOIN employees e ON c.employee_id = e.id
                 JOIN jobs j on c.job_id = j.id
                 JOIN departments d on j.department_id::int = d.id
-                WHERE c.ends_at < now() - interval '3 months' AND c.ends_at > now()
+                WHERE c.ends_at is not null and c.starts_at < now() and c.ends_at > now() and c.ends_at - interval '3 months' < now()
         """;
 
         return this.jdbcTemplate.queryForObject(query, Integer.class);

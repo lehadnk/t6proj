@@ -1,0 +1,30 @@
+<div>
+    <table class="table table-head-fixed">
+        <tbody>
+        <tr>
+            <td>Тип документа</td>
+            <td th:text="${document.documentType.toString()}"></td>
+        </tr>
+        <tr>
+            <td>Номер документа</td>
+            <td th:text="${document.documentNumber}"></td>
+        </tr>
+        <tr>
+            <td>URL</td>
+            <td><a th:text="${document.url}" th:href="${document.url}"></a></td>
+        </tr>
+        <tr>
+            <td>Кем выдан</td>
+            <td th:text="${document.issuedBy}"></td>
+        </tr>
+        <tr>
+            <td>Когда выдан</td>
+            <td th:text="${document.issuedAt}"></td>
+        </tr>
+        <tr>
+            <td>Срок действия</td>
+            <td th:text="${document.validBy}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

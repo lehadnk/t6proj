@@ -1,10 +1,7 @@
 package t6proj.employees.communication.http.forms;
 
 import adminlte.web_form.communication.AbstractWebForm;
-import adminlte.web_form.communication.form_elements.Hidden;
-import adminlte.web_form.communication.form_elements.Input;
-import adminlte.web_form.communication.form_elements.Select;
-import adminlte.web_form.communication.form_elements.Submit;
+import adminlte.web_form.communication.form_elements.*;
 import t6proj.employees.dto.EmployeeDocument;
 import t6proj.employees.dto.EmployeeDocumentEnum;
 
@@ -23,7 +20,11 @@ public class EmployeeDocumentForm extends AbstractWebForm<EmployeeDocument> {
         documentTypeOptions.put(EmployeeDocumentEnum.EMPLOYMENT_HISTORY.name(), "Трудовая книга");
         this.elements.put("documentType", new Select(documentTypeOptions).setLabel("Тип документа"));
 
-        this.elements.put("url", new Input().setRequired().setLabel("URL"));
+        this.elements.put("url", new Input().setLabel("Ссылка на файл"));
+        this.elements.put("issuedBy", new Input().setLabel("Кем выдан"));
+        this.elements.put("issuedAt", new DateTime().setLabel("Когда выдан"));
+        this.elements.put("validBy", new DateTime().setLabel("Действителен до"));
+        this.elements.put("documentNumber", new Input().setLabel("Номер документа"));
 
         this.submitButton = new Submit("Сохранить");
     }

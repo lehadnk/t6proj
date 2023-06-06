@@ -9,12 +9,15 @@ import adminlte.html_controller.communication.http.layout.LayoutFactory;
 import adminlte.html_template_renderer.HtmlTemplateRendererService;
 import adminlte.session.SessionServiceInterface;
 import adminlte.web_form.WebFormService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import t6proj.authorization.communication.http.RequiresAuthorizedUser;
 import t6proj.employees.EmployeesService;
 import t6proj.employees.communication.http.forms.EmployeeDocumentForm;
+import t6proj.employees.communication.http.templates.ViewEmployeeDocumentTemplate;
 import t6proj.employees.dto.EmployeeDocument;
 
 @Controller
@@ -39,7 +42,7 @@ public class EmployeeDocumentController extends AbstractHtmlController {
     @PostMapping("/save")
     @ResponseBody
     @RequiresAuthorizedUser
-    public ResponseEntity<String> saveEmployee(
+    public ResponseEntity<String> saveEmployeeDocument(
             @ModelAttribute EmployeeDocument request
     ) {
         var employeeDocumentForm = new EmployeeDocumentForm(request.id, request.employeeId);
@@ -57,6 +60,26 @@ public class EmployeeDocumentController extends AbstractHtmlController {
                                 this.layoutFactory.createAuthorizedAdminLayout("Редактировать документ"),
                                 this.renderForm(employeeDocumentForm)
                         )
+                )
+        );
+    }
+
+    @RequiresAuthorizedUser
+    @GetMapping("/{id}/view")
+    @ResponseBody
+    public String viewEmployeeDocument(
+            @PathVariable("id") Integer id
+    )
+    {
+        var document = this.employeesService.getEmployeeDocumentById(id);
+        if (document == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        return this.renderTemplate(
+                new ViewEmployeeDocumentTemplate(
+                        this.layoutFactory.createAuthorizedAdminLayout("Просмотр документа"),
+                        document
                 )
         );
     }

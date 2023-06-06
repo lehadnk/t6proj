@@ -22,7 +22,7 @@ public class ContractForm extends AbstractWebForm<Contract> {
         for(var job : jobs) {
             jobOptions.put(job.id.toString(), job.title);
         }
-        this.elements.put("jobId", new Select(jobOptions).setLabel("Рабочая должность").setRequired());
+        this.elements.put("jobId", new Select(jobOptions).setLabel("Должность").setRequired());
 
         this.submitButton = new Submit("Сохранить");
         this.actionUrl = "/contracts/save";

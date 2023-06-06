@@ -1,6 +1,7 @@
 package t6proj.employees.persistence.dao;
 
 import adminlte.entity_list_table.business.PaginatedEntityListInterface;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import t6proj.employees.dto.Employee;
 import t6proj.employees.dto.EmployeeDocument;
@@ -29,8 +30,8 @@ public class EmployeeDocumentDao {
     }
 
     public PaginatedEntityListInterface<EmployeeDocument> getEmployeeDocumentsList(Integer employeeId, Integer page, int pageSize) {
-        var offset = (page - 1) * pageSize;
-        var employeeDocumentEntityList = this.repository.getEmployeeDocumentsList(employeeId, pageSize, offset);
+        var pageable = PageRequest.of(page - 1, pageSize);
+        var employeeDocumentEntityList = this.repository.getEmployeeDocumentsList(employeeId, pageable);
         var employeeDocumentsCount = this.repository.getEmployeeDocumentsCount(employeeId);
 
         var dtoList = new ArrayList<EmployeeDocument>(employeeDocumentEntityList.size());

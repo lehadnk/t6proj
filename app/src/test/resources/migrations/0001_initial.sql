@@ -21,7 +21,10 @@ create table employee_documents
     id            integer not null primary key,
     employee_id   integer not null,
     url           varchar(255) not null,
-    document_type smallint not null
+    document_type smallint not null,
+    document_number varchar(255),
+    document_date date,
+    issued_by varchar(255)
 );
 
 alter table employee_documents owner to postgres;
@@ -103,7 +106,7 @@ $$
 LANGUAGE SQL;
 
 INSERT INTO users(id, email, password) VALUES
-(1, 'lehadnk@gmail.com', 'qwe');
+(1, 'lehadnk@gmail.com', 'H������A�M|����a5s��[@Ӕ,˕U�5');
 
 INSERT INTO departments(id, title, parent_department_id) VALUES
 (1, 'Факультет информационных технологий и управления', null),
@@ -131,10 +134,10 @@ INSERT INTO employees(id, birthdate, employed_at, first_name, last_name, middle_
 INSERT INTO employee_requests(id, employee_id, opened_at, status, text, title) VALUES
 (1, 1, '2023-01-05', 0, 'Заявление на отпуск', 'Хочу в отпуск');
 
-INSERT INTO employee_documents(id, employee_id, document_type, url) VALUES
-(1, 1, 0, 'http://s3.aws.com/3iau295O3j2a.png'),
-(2, 2, 0, 'http://s3.aws.com/dsIdoZ8wk2dk.png'),
-(3, 2, 1, 'http://s3.aws.com/32iAij35hhai.png');
+INSERT INTO employee_documents(id, employee_id, document_type, url, issued_by, issued_at, valid_by, document_number) VALUES
+(1, 1, 0, 'http://s3.aws.com/3iau295O3j2a.png', 'УФМС 7023', '2012-08-24', '2027-08-24', '21 04 689250'),
+(2, 2, 0, 'http://s3.aws.com/dsIdoZ8wk2dk.png', 'Паспортно-визовое отделение ОВД по р-ну Бибирево г. Москвы', '2013-05-21', '2025-02-24', 'РТ3926913862'),
+(3, 2, 1, 'http://s3.aws.com/32iAij35hhai.png', 'Еще какой-нибудь орган', '2007-01-13', '2025-06-07', '395 ФХ 3863');
 
 INSERT INTO contracts (id, employee_id, salary, starts_at, ends_at, terms, job_id) VALUES
 (1, 1, 80000, '2023-01-01', '2024-01-01', 'Появляться на работе', 1),
