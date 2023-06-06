@@ -51,7 +51,7 @@ public class ContractsController extends AbstractHtmlController {
 
         if (this.webFormService.isFormValid(contractForm)) {
             this.jobsService.saveContract(request);
-            this.addSuccessMessage("Контракт сохранен");
+            this.addSuccessMessage("Договор сохранен");
 
             return this.redirect("/employees/" + request.employeeId + "/view");
         }
@@ -59,7 +59,7 @@ public class ContractsController extends AbstractHtmlController {
         return ResponseEntity.ok(
                 this.renderTemplate(
                         new AuthorizedAdminFormTemplate(
-                                this.layoutFactory.createAuthorizedAdminLayout("Сохранить Контракт"),
+                                this.layoutFactory.createAuthorizedAdminLayout("Сохранить договор"),
                                 this.renderForm(contractForm)
                         )
                 )

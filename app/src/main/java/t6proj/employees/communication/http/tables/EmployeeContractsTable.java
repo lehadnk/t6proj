@@ -18,7 +18,7 @@ public class EmployeeContractsTable extends AbstractTable<EmployeeContract> {
 
     @Override
     public String getTitle() {
-        return "Контракты сотрудника";
+        return "Договоры сотрудника";
     }
 
     @Override
