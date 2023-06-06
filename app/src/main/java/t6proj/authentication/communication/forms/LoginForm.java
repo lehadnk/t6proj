@@ -16,7 +16,7 @@ public class LoginForm extends AbstractWebForm<AuthenticationRequest> {
             "password",
             new Password().setLabel("Password").setAutocompleteCurrentPassword(true)
         );
-        this.addSubmitButton(new Submit("Login"));
+        this.addSubmitButton(new Submit("Войти"));
     }
 
     @Override
