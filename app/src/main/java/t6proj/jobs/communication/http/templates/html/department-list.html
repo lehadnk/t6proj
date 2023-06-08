@@ -1,0 +1,7 @@
+<div class="row">
+    <div class="col col-sm-3">
+        <a class="btn btn-block btn-secondary mb-3" href="/departments/create">Добавить отдел</a>
+    </div>
+</div>
+
+<section th:include="@{jobs/communication/http/templates/html/department-list-menu-item.html} :: menuItem" th:with="departments=${departmentTreeNodes}"></section>

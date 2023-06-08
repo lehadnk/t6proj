@@ -9,6 +9,7 @@ import t6proj.jobs.persistence.repository.DepartmentHibernateRepository;
 import t6proj.jobs.persistence.repository.DepartmentJpaRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class DepartmentDao {
@@ -51,5 +52,16 @@ public class DepartmentDao {
     public boolean isChildToDepartment(Integer departmentId, Integer possibleChildId)
     {
         return this.jpaRepository.isChildToDepartment(departmentId, possibleChildId);
+    }
+
+    public List<Department> getAllDepartments() {
+        var departmentEntities = this.hibernateRepository.getAllDepartments();
+
+        var departmentList = new ArrayList<Department>(departmentEntities.size());
+        for(var departmentEntity : departmentEntities) {
+            departmentList.add(this.mapper.entityToDto(departmentEntity));
+        }
+
+        return departmentList;
     }
 }
