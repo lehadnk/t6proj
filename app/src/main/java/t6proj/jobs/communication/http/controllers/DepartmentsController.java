@@ -59,7 +59,7 @@ public class DepartmentsController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new AuthorizedAdminTableTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Department List"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Список отделов"),
                         this.renderTable(departmentsTable),
                         actionButtons
                 )

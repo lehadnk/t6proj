@@ -69,7 +69,7 @@ public class EmployeeController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new AuthorizedAdminTableTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Employee List"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Список сотрудников"),
                         this.renderTable(departmentsTable),
                         actionButtonList
                 )
@@ -87,7 +87,7 @@ public class EmployeeController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new AuthorizedAdminFormTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Create Employee"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Добавить сотрудника"),
                         this.renderForm(employeeForm)
                 )
         );
@@ -182,7 +182,7 @@ public class EmployeeController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new ViewEmployeeTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("View Employee"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Детали сотрудника"),
                         employee,
                         this.renderTable(documentListTable),
                         this.renderTable(employeeContractsTable)
@@ -211,7 +211,7 @@ public class EmployeeController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new AuthorizedAdminFormTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Create Employee"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Создать сотрудника"),
                         this.renderForm(employeeDocumentForm)
                 )
         );
@@ -239,7 +239,7 @@ public class EmployeeController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new AuthorizedAdminFormTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Добавить контракт"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Добавить договор"),
                         this.renderForm(employeeDocumentForm)
                 )
         );

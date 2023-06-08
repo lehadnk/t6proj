@@ -4,6 +4,8 @@ import adminlte.entity_list_table.EntityListTableBeanConfiguration;
 import adminlte.flash_message.FlashMessageBeanConfiguration;
 import adminlte.html_controller.HtmlControllerBeanConfiguration;
 import adminlte.html_template_renderer.HtmlTemplateRendererBeanConfiguration;
+import adminlte.i18n.I18nBeanConfiguration;
+import adminlte.i18n.I18nService;
 import adminlte.navigation_menu.NavigationMenuBeanConfiguration;
 import adminlte.web_form.WebFormBeanConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +20,8 @@ import org.thymeleaf.templatemode.TemplateMode;
         HtmlTemplateRendererBeanConfiguration.class,
         NavigationMenuBeanConfiguration.class,
         WebFormBeanConfiguration.class,
-        FlashMessageBeanConfiguration.class
+        FlashMessageBeanConfiguration.class,
+        I18nBeanConfiguration.class
 })
 @Configuration
 public class AdminlteConfigurationBean {

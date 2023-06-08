@@ -48,7 +48,7 @@ public class EmployeeRequestController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new AuthorizedAdminTableTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Employee Requests"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Запросы от сотрудников"),
                         this.renderTable(employeeRequestsTable)
                 )
         );
@@ -67,7 +67,7 @@ public class EmployeeRequestController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new ViewEmployeeRequestTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("View Employee Request"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Просмотр запроса от сотрудника"),
                         employeeRequest
                 )
         );

@@ -13,3 +13,5 @@ spring:
 adminlte:
   page-title: Отдел кадров
   project-name: Отдел кадров
+  navigation:
+    title: Навигация

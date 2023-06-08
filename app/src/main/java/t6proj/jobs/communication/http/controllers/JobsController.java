@@ -58,7 +58,7 @@ public class JobsController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new AuthorizedAdminTableTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Jobs List"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Список рабочих мест"),
                         this.renderTable(jobsTable),
                         actionButtonList
                 )
@@ -77,7 +77,7 @@ public class JobsController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new AuthorizedAdminFormTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Create Job"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Добавить рабочее место"),
                         this.renderForm(jobsForm)
                 )
         );
