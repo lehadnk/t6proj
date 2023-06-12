@@ -5,7 +5,6 @@ import adminlte.flash_message.FlashMessageBeanConfiguration;
 import adminlte.html_controller.HtmlControllerBeanConfiguration;
 import adminlte.html_template_renderer.HtmlTemplateRendererBeanConfiguration;
 import adminlte.i18n.I18nBeanConfiguration;
-import adminlte.i18n.I18nService;
 import adminlte.navigation_menu.NavigationMenuBeanConfiguration;
 import adminlte.web_form.WebFormBeanConfiguration;
 import org.springframework.context.annotation.Bean;

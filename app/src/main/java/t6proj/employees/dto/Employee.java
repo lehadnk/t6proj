@@ -3,7 +3,6 @@ package t6proj.employees.dto;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Setter
 public class Employee {

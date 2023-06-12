@@ -4,6 +4,7 @@ import adminlte.entity_list_table.business.PaginatedEntityListInterface;
 import adminlte.entity_list_table.communication.http.tables.AbstractTable;
 import adminlte.entity_list_table.communication.http.tables.columns.ActionButton;
 import adminlte.entity_list_table.communication.http.tables.columns.ActionsColumn;
+import adminlte.entity_list_table.communication.http.tables.columns.DateTimeColumn;
 import adminlte.entity_list_table.communication.http.tables.columns.TextColumn;
 import t6proj.jobs.dto.EmployeeContract;
 
@@ -26,8 +27,8 @@ public class EmployeeContractsTable extends AbstractTable<EmployeeContract> {
         this.columns.add(new TextColumn("id").setTitle("ID"));
         this.columns.add(new TextColumn("jobTitle").setTitle("Название рабочей должности"));
         this.columns.add(new TextColumn("departmentTitle").setTitle("Название отдела"));
-        this.columns.add(new TextColumn("startsAt").setTitle("От"));
-        this.columns.add(new TextColumn("endsAt").setTitle("До"));
+        this.columns.add(new DateTimeColumn("startsAt", "dd.MM.yyyy").setTitle("От"));
+        this.columns.add(new DateTimeColumn("endsAt", "dd.MM.yyyy").setTitle("До"));
 
         var actionButtons = new ArrayList<ActionButton>();
         actionButtons.add(new ActionButton("Редактировать", "/contracts/<:id>/edit", "id"));

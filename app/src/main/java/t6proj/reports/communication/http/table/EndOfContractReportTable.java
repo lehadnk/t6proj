@@ -2,6 +2,7 @@ package t6proj.reports.communication.http.table;
 
 import adminlte.entity_list_table.business.PaginatedEntityListInterface;
 import adminlte.entity_list_table.communication.http.tables.AbstractTable;
+import adminlte.entity_list_table.communication.http.tables.columns.DateTimeColumn;
 import adminlte.entity_list_table.communication.http.tables.columns.TextColumn;
 import t6proj.reports.dto.EndOfContractReportRow;
 
@@ -21,6 +22,6 @@ public class EndOfContractReportTable extends AbstractTable<EndOfContractReportR
         this.columns.add(new TextColumn("employeeName").setTitle("Имя сотрудника"));
         this.columns.add(new TextColumn("departmentName").setTitle("Отдел"));
         this.columns.add(new TextColumn("jobTitle").setTitle("Должность"));
-        this.columns.add(new TextColumn("contractEndsAt").setTitle("Дата окончания договора"));
+        this.columns.add(new DateTimeColumn("contractEndsAt", "dd.MM.yyyy").setTitle("Дата окончания договора"));
     }
 }

@@ -10,13 +10,8 @@ import t6proj.user.UserService;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.sql.Time;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalUnit;
 import java.util.Date;
-import java.util.Objects;
 
 @Component
 public class AuthenticationHandler {

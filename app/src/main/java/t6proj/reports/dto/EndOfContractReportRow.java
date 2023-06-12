@@ -1,6 +1,8 @@
 package t6proj.reports.dto;
 
-import java.util.Date;
+
+import java.sql.Date;
+
 
 public class EndOfContractReportRow {
     public Integer employeeId;

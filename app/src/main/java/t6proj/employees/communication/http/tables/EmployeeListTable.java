@@ -4,6 +4,7 @@ import adminlte.entity_list_table.business.PaginatedEntityListInterface;
 import adminlte.entity_list_table.communication.http.tables.AbstractTable;
 import adminlte.entity_list_table.communication.http.tables.columns.ActionButton;
 import adminlte.entity_list_table.communication.http.tables.columns.ActionsColumn;
+import adminlte.entity_list_table.communication.http.tables.columns.DateTimeColumn;
 import adminlte.entity_list_table.communication.http.tables.columns.TextColumn;
 import t6proj.employees.dto.Employee;
 
@@ -24,7 +25,7 @@ public class EmployeeListTable extends AbstractTable<Employee> {
         this.columns.add(new TextColumn("id").setTitle("ID"));
         this.columns.add(new TextColumn("firstName").setTitle("Имя"));
         this.columns.add(new TextColumn("lastName").setTitle("Фамилия"));
-        this.columns.add(new TextColumn("birthdate").setTitle("Дата рождения"));
+        this.columns.add(new DateTimeColumn("birthdate", "dd.MM.yyyy").setTitle("Дата рождения"));
 
         var actionButtons = new ArrayList<ActionButton>();
         actionButtons.add(new ActionButton("Документы", "/employees/<:id>/view", "id"));
