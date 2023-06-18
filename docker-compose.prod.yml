@@ -1,0 +1,23 @@
+version: '31.7'
+services:
+  t6proj-postgres:
+    image: postgres:15.3-alpine
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: qwe
+
+  t6proj-app:
+    container_name: t6proj-app
+    image: t6proj-app:latest
+    restart: always
+    env_file: .env
+    command: >
+      --spring.profiles.active=prod
+    ports:
+      - "8082:8082"
+
+volumes:
+  pgdata:
