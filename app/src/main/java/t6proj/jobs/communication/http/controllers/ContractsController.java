@@ -85,7 +85,7 @@ public class ContractsController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new AuthorizedAdminFormTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Редактировать контракт"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Редактировать договор"),
                         this.renderForm(contractForm)
                 )
         );

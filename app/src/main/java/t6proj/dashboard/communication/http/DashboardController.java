@@ -39,7 +39,7 @@ public class DashboardController extends AbstractHtmlController {
     public String dashboard()
     {
         var template = new DashboardTemplate(
-                this.layoutFactory.createAuthorizedAdminLayout("Dashboard"),
+                this.layoutFactory.createAuthorizedAdminLayout("Статистика"),
                 this.employeesService.getEmployeeRequestsCount()
         );
 

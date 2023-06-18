@@ -21,7 +21,7 @@ public class JobForm extends AbstractWebForm<Job> {
         for (var department : departments) {
             departmentOptions.put(department.id.toString(), department.title);
         }
-        this.elements.put("departmentId", new Select(departmentOptions).setLabel("Департамент"));
+        this.elements.put("departmentId", new Select(departmentOptions).setLabel("Отдел"));
 
         this.submitButton = new Submit("Сохранить");
     }

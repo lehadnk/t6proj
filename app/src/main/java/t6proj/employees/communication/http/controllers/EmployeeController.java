@@ -182,7 +182,7 @@ public class EmployeeController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new ViewEmployeeTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Детали сотрудника"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Документы сотрудника"),
                         employee,
                         this.renderTable(documentListTable),
                         this.renderTable(employeeContractsTable)
@@ -211,7 +211,7 @@ public class EmployeeController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new AuthorizedAdminFormTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Создать сотрудника"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Добавить документ сотрудника"),
                         this.renderForm(employeeDocumentForm)
                 )
         );

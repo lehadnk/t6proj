@@ -89,7 +89,7 @@ public class ReportsRepository {
         return this.jdbcTemplate.query(query, (rs, i) -> {
             var result = new DepartmentSpendingsReportRow();
             result.departmentName = rs.getString(1);
-            result.monthlySpendings = rs.getDouble(2);
+            result.monthlySpendings = rs.getInt(2) + " ₽";
             return result;
         }, limit, offset);
     }

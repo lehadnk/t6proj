@@ -103,7 +103,7 @@ public class JobsController extends AbstractHtmlController {
 
         return this.renderTemplate(
                 new AuthorizedAdminFormTemplate(
-                        this.layoutFactory.createAuthorizedAdminLayout("Edit Job"),
+                        this.layoutFactory.createAuthorizedAdminLayout("Редактировать рабочее место"),
                         this.renderForm(jobForm)
                 )
         );
@@ -130,7 +130,7 @@ public class JobsController extends AbstractHtmlController {
         return ResponseEntity.ok(
                 this.renderTemplate(
                         new AuthorizedAdminFormTemplate(
-                                this.layoutFactory.createAuthorizedAdminLayout("Edit Job"),
+                                this.layoutFactory.createAuthorizedAdminLayout("Редактировать рабочее место"),
                                 this.renderForm(jobForm)
                         )
                 )
