@@ -12,7 +12,6 @@ public class EmployeeDocument {
     public String url;
     public Integer employeeId;
     public String documentNumber;
-    public LocalDateTime issuedAt;
-    public LocalDateTime validBy;
+    public LocalDateTime documentDate;
     public String issuedBy;
 }

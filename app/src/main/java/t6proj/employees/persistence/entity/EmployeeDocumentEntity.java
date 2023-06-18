@@ -26,11 +26,8 @@ public class EmployeeDocumentEntity {
     @Column(name="document_number")
     public String documentNumber;
 
-    @Column(name="issued_at")
-    public Date issuedAt;
-
-    @Column(name="valid_by")
-    public Date validBy;
+    @Column(name="document_date")
+    public Date documentDate;
 
     @Column(name="issued_by")
     public String issuedBy;
