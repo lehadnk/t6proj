@@ -11,35 +11,10 @@ create table departments
 (
     id                   integer not null primary key,
     title                varchar(255) not null,
-    parent_department_id integer constraint departments_parent_department_id_constraint references departments("id") on delete set null
+    parent_department_id integer constraint departments_parent_department_id_constraint references departments("id") on delete set null on update cascade
 );
 
 alter table departments owner to postgres;
-
-create table employee_documents
-(
-    id            integer not null primary key,
-    employee_id   integer not null,
-    url           varchar(255) not null,
-    document_type smallint not null,
-    document_number varchar(255),
-    document_date date,
-    issued_by varchar(255)
-);
-
-alter table employee_documents owner to postgres;
-
-create table employee_requests
-(
-    id          integer not null primary key,
-    employee_id integer not null,
-    opened_at   date not null,
-    status      smallint not null,
-    text        varchar(255) not null,
-    title       varchar(255) not null
-);
-
-alter table employee_requests owner to postgres;
 
 create table employees
 (
@@ -54,10 +29,35 @@ create table employees
 
 alter table employees owner to postgres;
 
+create table employee_documents
+(
+    id            integer not null primary key,
+    employee_id   integer not null constraint employee_documents_employee_id_constraint references employees("id") on delete restrict on update cascade,
+    url           varchar(255) not null,
+    document_type smallint not null,
+    document_number varchar(255),
+    document_date date,
+    issued_by varchar(255)
+);
+
+alter table employee_documents owner to postgres;
+
+create table employee_requests
+(
+    id          integer not null primary key,
+    employee_id integer not null constraint employee_requests references employees("id") on delete cascade on update cascade,
+    opened_at   date not null,
+    status      smallint not null,
+    text        varchar(255) not null,
+    title       varchar(255) not null
+);
+
+alter table employee_requests owner to postgres;
+
 create table jobs
 (
     id            integer not null primary key,
-    department_id integer not null,
+    department_id integer not null constraint jobs_department_id_constraint references departments("id") on delete restrict on update cascade,
     title         varchar(255) not null
 );
 
@@ -66,12 +66,12 @@ alter table jobs owner to postgres;
 create table contracts
 (
     id          integer not null primary key,
-    employee_id integer not null,
+    employee_id integer not null constraint contracts_employee_id_constraint references contracts("id") on delete restrict on update cascade,
     salary      double precision,
     starts_at   date not null,
     ends_at     date,
     terms       varchar(255) not null,
-    job_id      integer constraint contracts_job_id_constraint references jobs("id")
+    job_id      integer constraint contracts_job_id_constraint references jobs("id") on delete restrict on update cascade
 );
 
 alter table contracts owner to postgres;
@@ -93,14 +93,14 @@ $$
         WHERE tree.id = departments.parent_department_id
     )
 
-    SELECT
-        sum(salary) as salary
-    FROM contracts c
-             JOIN jobs j on c.job_id = j.id
-             JOIN departments d on j.department_id = d.id
-    WHERE d.id IN (
-        SELECT id
-        FROM tree
+SELECT
+    sum(salary) as salary
+FROM contracts c
+         JOIN jobs j on c.job_id = j.id
+         JOIN departments d on j.department_id = d.id
+WHERE d.id IN (
+    SELECT id
+    FROM tree
 );
 $$
 LANGUAGE SQL;
@@ -134,10 +134,10 @@ INSERT INTO employees(id, birthdate, employed_at, first_name, last_name, middle_
 INSERT INTO employee_requests(id, employee_id, opened_at, status, text, title) VALUES
 (1, 1, '2023-01-05', 0, 'Заявление на отпуск', 'Хочу в отпуск');
 
-INSERT INTO employee_documents(id, employee_id, document_type, url, issued_by, issued_at, valid_by, document_number) VALUES
-(1, 1, 0, 'http://s3.aws.com/3iau295O3j2a.png', 'УФМС 7023', '2012-08-24', '2027-08-24', '21 04 689250'),
-(2, 2, 0, 'http://s3.aws.com/dsIdoZ8wk2dk.png', 'Паспортно-визовое отделение ОВД по р-ну Бибирево г. Москвы', '2013-05-21', '2025-02-24', 'РТ3926913862'),
-(3, 2, 1, 'http://s3.aws.com/32iAij35hhai.png', 'Еще какой-нибудь орган', '2007-01-13', '2025-06-07', '395 ФХ 3863');
+INSERT INTO employee_documents(id, employee_id, document_type, url, issued_by, document_date, document_number) VALUES
+(1, 1, 0, 'http://s3.aws.com/3iau295O3j2a.png', 'УФМС 7023', '2012-08-24', '21 04 689250'),
+(2, 2, 0, 'http://s3.aws.com/dsIdoZ8wk2dk.png', 'Паспортно-визовое отделение ОВД по р-ну Бибирево г. Москвы', '2013-05-21', 'РТ3926913862'),
+(3, 2, 1, 'http://s3.aws.com/32iAij35hhai.png', 'Еще какой-нибудь орган', '2007-01-13', '395 ФХ 3863');
 
 INSERT INTO contracts (id, employee_id, salary, starts_at, ends_at, terms, job_id) VALUES
 (1, 1, 80000, '2023-01-01', '2024-01-01', 'Появляться на работе', 1),
