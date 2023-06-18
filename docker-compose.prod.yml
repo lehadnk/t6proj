@@ -17,7 +17,7 @@ services:
     command: >
       --spring.profiles.active=prod
     ports:
-      - "8082:8082"
+      - "80:80"
 
 volumes:
   pgdata:
