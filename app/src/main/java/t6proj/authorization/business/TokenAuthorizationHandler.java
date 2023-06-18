@@ -2,7 +2,6 @@ package t6proj.authorization.business;
 
 import org.springframework.stereotype.Component;
 import t6proj.jwt.JwtService;
-import t6proj.jwt.dto.Token;
 import t6proj.jwt.exceptions.InvalidTokenException;
 import t6proj.user.UserService;
 

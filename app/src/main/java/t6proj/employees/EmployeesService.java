@@ -47,10 +47,6 @@ public class EmployeesService {
         return this.employeeRequestDao.getEmployeeRequestList(page, pageSize);
     }
 
-    public PaginatedEntityListInterface<EmployeeRequest> getEmployeeRequestsByEmployee(Integer employeeId, Integer page, int pageSize) {
-        return this.employeeRequestDao.getEmployeeRequestListByEmployee(employeeId, page, pageSize);
-    }
-
     public Employee getEmployeeById(Integer id) {
         return this.employeeDao.getEmployee(id);
     }

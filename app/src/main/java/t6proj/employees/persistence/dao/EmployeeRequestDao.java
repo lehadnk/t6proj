@@ -25,23 +25,6 @@ public class EmployeeRequestDao {
         this.jpaRepository = jpaRepository;
     }
 
-    public PaginatedEntityListInterface<EmployeeRequest> getEmployeeRequestListByEmployee(Integer employeeId, Integer page, int pageSize) {
-        var pageable = PageRequest.of(page - 1, pageSize);
-        var employeeDocumentEntityList = this.hibernateRepository.getEmployeeRequestListByEmployee(employeeId, pageable);
-        var employeeDocumentsCount = this.hibernateRepository.getEmployeeRequestsCountByEmployee(employeeId);
-
-        var dtoList = new ArrayList<EmployeeRequest>(employeeDocumentEntityList.size());
-        for(var employeeDocumentEntity : employeeDocumentEntityList) {
-            dtoList.add(this.mapper.entityToDto(employeeDocumentEntity));
-        }
-
-        return new PaginatedEntityList<>(
-                dtoList,
-                page,
-                (int) Math.ceil((double) employeeDocumentsCount / pageSize)
-        );
-    }
-
     public PaginatedEntityListInterface<EmployeeRequest> getEmployeeRequestList(Integer page, int pageSize) {
         var offset = (page - 1) * pageSize;
         var employeeRequestsList = this.jpaRepository.getEmployeeRequestList(pageSize, offset);

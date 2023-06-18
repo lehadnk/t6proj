@@ -22,7 +22,6 @@ public class AuthenticationServletFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         var servletRequest = (HttpServletRequest) request;
-        var servletResponse = (HttpServletResponse) response;
 
         var cookies = servletRequest.getCookies();
         if (cookies != null) {
@@ -33,10 +32,6 @@ public class AuthenticationServletFilter implements Filter {
             }
         }
 
-//        try {
-            chain.doFilter(request, response);
-//        } finally {
-//
-//        }
+        chain.doFilter(request, response);
     }
 }

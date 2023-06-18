@@ -79,9 +79,4 @@ public class AuthenticationController extends AbstractHtmlController {
             );
         }
     }
-
-    public String redirect()
-    {
-        return "forward:/dashboard";
-    }
 }
