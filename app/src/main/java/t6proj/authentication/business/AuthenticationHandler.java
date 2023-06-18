@@ -11,6 +11,7 @@ import t6proj.user.UserService;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.time.Instant;
+import java.util.Base64;
 import java.util.Date;
 
 @Component
@@ -35,7 +36,10 @@ public class AuthenticationHandler {
         }
 
         var digest = MessageDigest.getInstance("SHA-256");
-        var hashedPassword = new String(digest.digest(request.password.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+        var hashedPassword = new String(
+                Base64.getEncoder().encode(digest.digest(request.password.getBytes(StandardCharsets.UTF_8))),
+                StandardCharsets.UTF_8
+        );
         if (!user.password.equals(hashedPassword)) {
             return new AuthenticationResult(false, null);
         }

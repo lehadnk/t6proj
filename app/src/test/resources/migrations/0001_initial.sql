@@ -106,7 +106,7 @@ $$
 LANGUAGE SQL;
 
 INSERT INTO users(id, email, password) VALUES
-(1, 'lehadnk@gmail.com', 'H������A�M|����a5s��[@Ӕ,˕U�5');
+(1, 'lehadnk@gmail.com', 'SJzV28cIx+VB3k182Rzm0PFhNXO3/FtA05Qsy5VVzzU=');
 
 INSERT INTO departments(id, title, parent_department_id) VALUES
 (1, 'Факультет информационных технологий и управления', null),

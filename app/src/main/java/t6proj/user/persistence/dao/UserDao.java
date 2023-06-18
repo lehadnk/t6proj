@@ -13,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 @Component
@@ -43,7 +44,10 @@ public class UserDao {
         var entity = this.mapper.dtoToEntity(user);
         if (user.changePassword != null) {
             var digest = MessageDigest.getInstance("SHA-256");
-            entity.password = new String(digest.digest(user.changePassword.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+            entity.password = new String(
+                    Base64.getEncoder().encode(digest.digest(user.changePassword.getBytes(StandardCharsets.UTF_8))),
+                    StandardCharsets.UTF_8
+            );
         }
 
         this.repository.save(entity);

@@ -10,7 +10,7 @@ public class EmployeeForm extends AbstractWebForm<Employee> {
     {
         this.elements.put("id", new Hidden().setValue(id != null ? id.toString() : null));
         this.elements.put("firstName", new Input().setRequired().setLabel("Имя"));
-        this.elements.put("middleName", new Input().setRequired().setLabel("Отчество"));
+        this.elements.put("middleName", new Input().setLabel("Отчество"));
         this.elements.put("lastName", new Input().setRequired().setLabel("Фамилия"));
         this.elements.put("birthdate", new DateTime().setRequired().setLabel("Дата рождения"));
         this.elements.put("employedAt", new DateTime().setRequired().setLabel("Дата трудоустройства"));
