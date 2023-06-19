@@ -113,8 +113,7 @@ public class DepartmentsController extends AbstractHtmlController {
     @RequiresAuthorizedUser
     public String addDepartmentChild(
             @PathVariable("departmentId") Integer departmentId
-    )
-    {
+    ) {
         var parentDepartment = this.jobsService.getDepartmentById(departmentId);
         if (parentDepartment == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);

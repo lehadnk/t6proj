@@ -1,6 +1,5 @@
 package t6proj.jobs.persistence.dao;
 
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import t6proj.framework.dto.PaginatedEntityList;
 import t6proj.jobs.dto.Department;

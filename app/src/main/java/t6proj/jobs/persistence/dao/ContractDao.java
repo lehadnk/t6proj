@@ -1,6 +1,5 @@
 package t6proj.jobs.persistence.dao;
 
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import t6proj.framework.dto.PaginatedEntityList;
 import t6proj.jobs.dto.Contract;
@@ -8,8 +7,6 @@ import t6proj.jobs.dto.EmployeeContract;
 import t6proj.jobs.persistence.mapper.ContractMapper;
 import t6proj.jobs.persistence.repository.ContractHibernateRepository;
 import t6proj.jobs.persistence.repository.ContractJpaRepository;
-
-import java.util.ArrayList;
 
 @Component
 public class ContractDao {

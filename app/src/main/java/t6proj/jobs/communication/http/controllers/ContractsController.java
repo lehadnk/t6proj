@@ -71,8 +71,7 @@ public class ContractsController extends AbstractHtmlController {
     @RequiresAuthorizedUser
     public String editContract(
             @PathVariable("id") Integer id
-    )
-    {
+    ) {
         var jobs = this.jobsService.getJobList(1, 10000);
 
         var contract = this.jobsService.getContractById(id);

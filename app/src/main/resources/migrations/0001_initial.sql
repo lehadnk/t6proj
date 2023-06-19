@@ -66,7 +66,7 @@ alter table jobs owner to postgres;
 create table contracts
 (
     id          integer not null primary key,
-    employee_id integer not null constraint contracts_employee_id_constraint references contracts("id") on delete restrict on update cascade,
+    employee_id integer not null constraint contracts_employee_id_constraint references employees("id") on delete restrict on update cascade,
     salary      double precision,
     starts_at   date not null,
     ends_at     date,

@@ -88,8 +88,7 @@ public class JobsController extends AbstractHtmlController {
     @RequiresAuthorizedUser
     public String editJob(
             @PathVariable("id") Integer id
-    )
-    {
+    ) {
         var job = this.jobsService.getJobById(id);
         if (job == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
