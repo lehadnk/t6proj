@@ -49,7 +49,7 @@ create table employee_requests
     opened_at   date not null,
     status      smallint not null,
     text        varchar(255) not null,
-    title       varchar(255) not null
+    title       text not null
 );
 
 alter table employee_requests owner to postgres;
@@ -70,7 +70,7 @@ create table contracts
     salary      double precision,
     starts_at   date not null,
     ends_at     date,
-    terms       varchar(255) not null,
+    terms       text not null,
     job_id      integer constraint contracts_job_id_constraint references jobs("id") on delete restrict on update cascade
 );
 
