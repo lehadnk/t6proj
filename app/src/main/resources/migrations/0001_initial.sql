@@ -146,3 +146,11 @@ INSERT INTO contracts (id, employee_id, salary, starts_at, ends_at, terms, job_i
 (4, 3, 70000, '2023-01-01', '2024-01-01', 'Появляться на работе', 3),
 (5, 2, 40000, '2023-01-01', '2023-07-01', 'Появляться на работе', 4),
 (6, 2, 20000, '2023-01-01', '2024-01-01', 'Появляться на работе', 5);
+
+SELECT setval('contracts_id_seq', 6, true);
+SELECT setval('department_id_seq', 8, true);
+SELECT setval('employee_document_id_seq', 3, true);
+SELECT setval('employee_id_seq', 4, true);
+SELECT setval('employee_request_id_seq', 1, true);
+SELECT setval('job_id_seq', 5, true);
+SELECT setval('user_id_seq', 1, true);
