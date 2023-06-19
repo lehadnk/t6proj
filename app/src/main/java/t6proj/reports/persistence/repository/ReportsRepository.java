@@ -53,7 +53,7 @@ public class ReportsRepository {
                 FROM contracts c
                 JOIN employees e ON c.employee_id = e.id
                 JOIN jobs j on c.job_id = j.id
-                JOIN departments d on j.department_id::int = d.id
+                JOIN departments d on j.department_id = d.id
                 WHERE c.ends_at is not null and c.starts_at < now() and c.ends_at > now() and c.ends_at - interval '3 months' < now()
         """;
 
