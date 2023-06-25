@@ -2,7 +2,7 @@
   <ul>
     <th:block th:each="department : ${departments}">
       <li><span th:text="${department.title}"></span> (<a th:href="'/departments/' + ${department.id} + '/edit'">Редактировать</a> / <a th:href="'/departments/' + ${department.id} + '/add-child'">Добавить потомка</a>)</li>
-      <section th:if="${department.children != null}" th:include="@{jobs/communication/http/templates/html/department-list-menu-item.html} :: menuItem" th:with="departments=${department.children}"></section>
+      <section th:if="${department.children != null}" th:insert="~{@{jobs/communication/http/templates/html/department-list-menu-item.html} :: menuItem}" th:with="departments=${department.children}"></section>
     </th:block>
   </ul>
 </section>

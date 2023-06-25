@@ -4,4 +4,4 @@
     </div>
 </div>
 
-<section th:include="@{jobs/communication/http/templates/html/department-list-menu-item.html} :: menuItem" th:with="departments=${departmentTreeNodes}"></section>
+<section th:insert="~{@{jobs/communication/http/templates/html/department-list-menu-item.html} :: menuItem}" th:with="departments=${departmentTreeNodes}"></section>
