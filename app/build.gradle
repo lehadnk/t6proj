@@ -61,6 +61,7 @@ jib {
     }
     to {
         image = 't6proj-app'
+        platform = System.getenv('CPU_ARCH') ?: 'amd64'
     }
 }
 

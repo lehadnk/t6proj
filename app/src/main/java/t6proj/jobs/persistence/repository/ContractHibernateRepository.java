@@ -1,10 +1,8 @@
 package t6proj.jobs.persistence.repository;
 
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import t6proj.jobs.persistence.entity.ContractEntity;
-import java.util.List;
 
 
 public interface ContractHibernateRepository extends JpaRepository<ContractEntity, Integer> {

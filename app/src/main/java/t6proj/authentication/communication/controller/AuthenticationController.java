@@ -67,7 +67,7 @@ public class AuthenticationController extends AbstractHtmlController {
                     .body(null);
         } else {
             var loginForm = new LoginForm();
-            loginForm.addValidationErrorMessage("Incorrect login and password pair");
+            loginForm.addValidationErrorMessage("Неверный логин или пароль");
 
             return ResponseEntity.ok().body(
                         this.renderTemplate(

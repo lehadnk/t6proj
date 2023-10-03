@@ -19,6 +19,7 @@ public class ContractJpaRepository {
 
     public List<EmployeeContract> getEmployeeContracts(int employeeId, int limit, int offset)
     {
+
         var query = """
                 SELECT 
                     c.id,
@@ -36,7 +37,7 @@ public class ContractJpaRepository {
 
         return this.jdbcTemplate.query(query, (rs, i) -> {
             var result = new EmployeeContract();
-            result.id = rs.getInt(1);
+            result.id = rs.getInt("id");
             result.jobTitle = rs.getString(2);
             result.departmentTitle = rs.getString(3);
             result.startsAt = rs.getDate(4);
