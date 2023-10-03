@@ -58,10 +58,15 @@ sourceSets {
 jib {
     from {
         image = 'eclipse-temurin:20'
+        platforms {
+            platform {
+                architecture = System.getenv('CPU_ARCH') ?: 'amd64'
+                os = 'linux'
+            }
+        }
     }
     to {
         image = 't6proj-app'
-        platform = System.getenv('CPU_ARCH') ?: 'amd64'
     }
 }
 
