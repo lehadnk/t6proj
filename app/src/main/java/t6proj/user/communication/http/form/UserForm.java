@@ -14,7 +14,7 @@ public class UserForm extends AbstractWebForm<User> {
         this.elements.put("password", new Hidden());
         this.elements.put("changePassword", new Input().setLabel("Пароль"));
 
-        this.submitButton = new Submit("Сохранить");
+        this.addSubmitButton(new Submit("Сохранить"));
         this.actionUrl = "/users/save";
     }
 }

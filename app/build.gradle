@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.lehadnk:adminlte:1.1.2'
+    implementation 'com.github.lehadnk:adminlte:1.5.2'
 
     testImplementation 'junit:junit:4.13.2'
 

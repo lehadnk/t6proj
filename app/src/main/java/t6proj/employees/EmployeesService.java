@@ -62,4 +62,8 @@ public class EmployeesService {
     public EmployeeDocument getEmployeeDocumentById(Integer id) {
         return this.employeeDocumentDao.getEmployeeDocumentById(id);
     }
+
+    public void deleteEmployeeDocumentById(Integer id) {
+        this.employeeDocumentDao.deleteEmployeeDocumentById(id);
+    }
 }

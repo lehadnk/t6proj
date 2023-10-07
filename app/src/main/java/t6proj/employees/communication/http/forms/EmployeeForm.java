@@ -15,6 +15,6 @@ public class EmployeeForm extends AbstractWebForm<Employee> {
         this.elements.put("birthdate", new DateTime().setRequired().setLabel("Дата рождения"));
         this.elements.put("employedAt", new DateTime().setRequired().setLabel("Дата трудоустройства"));
 
-        this.submitButton = new Submit("Сохранить");
+        this.addSubmitButton(new Submit("Сохранить"));
     }
 }

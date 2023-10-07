@@ -23,6 +23,6 @@ public class JobForm extends AbstractWebForm<Job> {
         }
         this.elements.put("departmentId", new Select(departmentOptions).setLabel("Отдел"));
 
-        this.submitButton = new Submit("Сохранить");
+        this.addSubmitButton(new Submit("Сохранить"));
     }
 }

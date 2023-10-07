@@ -24,7 +24,7 @@ public class ContractForm extends AbstractWebForm<Contract> {
         }
         this.elements.put("jobId", new Select(jobOptions).setLabel("Должность").setRequired());
 
-        this.submitButton = new Submit("Сохранить");
+        this.addSubmitButton(new Submit("Сохранить"));
         this.actionUrl = "/contracts/save";
     }
 }

@@ -25,6 +25,6 @@ public class EmployeeDocumentForm extends AbstractWebForm<EmployeeDocument> {
         this.elements.put("documentDate", new DateTime().setLabel("Когда выдан"));
         this.elements.put("documentNumber", new Input().setLabel("Номер документа"));
 
-        this.submitButton = new Submit("Сохранить");
+        this.addSubmitButton(new Submit("Сохранить"));
     }
 }

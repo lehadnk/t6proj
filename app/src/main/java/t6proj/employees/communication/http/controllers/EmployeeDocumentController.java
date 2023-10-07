@@ -69,8 +69,7 @@ public class EmployeeDocumentController extends AbstractHtmlController {
     @ResponseBody
     public String viewEmployeeDocument(
             @PathVariable("id") Integer id
-    )
-    {
+    ) {
         var document = this.employeesService.getEmployeeDocumentById(id);
         if (document == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -82,5 +81,45 @@ public class EmployeeDocumentController extends AbstractHtmlController {
                         document
                 )
         );
+    }
+
+    @RequiresAuthorizedUser
+    @GetMapping("/{id}/edit")
+    @ResponseBody
+    public String editEmployeeDocument(
+            @PathVariable("id") Integer id
+    ) {
+        var document = this.employeesService.getEmployeeDocumentById(id);
+        if (document == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        var employeeDocumentForm = new EmployeeDocumentForm(id, document.employeeId);
+        employeeDocumentForm.hydrateFromRequest(document);
+        employeeDocumentForm.actionUrl = "/employee-documents/save";
+
+        return this.renderTemplate(
+                new AuthorizedAdminFormTemplate(
+                        this.layoutFactory.createAuthorizedAdminLayout("Редактирование документа"),
+                        this.renderForm(employeeDocumentForm)
+                )
+        );
+    }
+
+    @RequiresAuthorizedUser
+    @GetMapping("/{id}/delete")
+    @ResponseBody
+    public ResponseEntity<String> deleteEmployeeDocument(
+            @PathVariable("id") Integer id
+    ) {
+        var document = this.employeesService.getEmployeeDocumentById(id);
+        if (document == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        this.employeesService.deleteEmployeeDocumentById(id);
+        this.addSuccessMessage("Документ сотрудника удален");
+
+        return this.redirect("/employees/" + document.employeeId + "/view");
     }
 }

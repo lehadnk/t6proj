@@ -4,7 +4,7 @@ import adminlte.web_form.communication.validators.AbstractFormValidator;
 import adminlte.web_form.dto.ValidationResult;
 import t6proj.jobs.JobsService;
 
-public class ParentDepartmentIdValidator extends AbstractFormValidator {
+public class ParentDepartmentIdValidator extends AbstractFormValidator<String> {
     private final Integer departmentId;
     private final JobsService jobsService;
 
@@ -13,7 +13,6 @@ public class ParentDepartmentIdValidator extends AbstractFormValidator {
         this.jobsService = jobsService;
     }
 
-    @Override
     public ValidationResult validate(String s) {
         if (this.departmentId == null) {
             return this.successValidationResult();

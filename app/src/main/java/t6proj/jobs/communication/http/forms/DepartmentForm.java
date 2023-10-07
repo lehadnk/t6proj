@@ -23,6 +23,6 @@ public class DepartmentForm extends AbstractWebForm<Department> {
         }
         this.elements.put("parentDepartmentId", new Select(departmentOptions).setNullable(true).setLabel("Родительское подразделение").addValidator(parentDepartmentIdValidator));
 
-        this.submitButton = new Submit("Сохранить");
+        this.addSubmitButton(new Submit("Сохранить"));
     }
 }

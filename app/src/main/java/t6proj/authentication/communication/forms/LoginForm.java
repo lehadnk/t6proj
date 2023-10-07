@@ -8,6 +8,8 @@ import t6proj.authentication.dto.AuthenticationRequest;
 
 public class LoginForm extends AbstractWebForm<AuthenticationRequest> {
     public LoginForm() {
+        this.setSimpleLayout();
+
         this.addElement(
             "email",
             new Email().setLabel("Email")
@@ -16,7 +18,7 @@ public class LoginForm extends AbstractWebForm<AuthenticationRequest> {
             "password",
             new Password().setLabel("Password").setAutocompleteCurrentPassword(true)
         );
-        this.addSubmitButton(new Submit("Войти"));
+        this.addSubmitButton(new Submit("Войти").setLength(12));
     }
 
     @Override
