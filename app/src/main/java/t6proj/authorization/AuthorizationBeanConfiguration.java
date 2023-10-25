@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import t6proj.authorization.communication.http.filter.AuthenticationServletFilter;
 
 @Configuration(proxyBeanMethods = true)
-public class AuthorizationConfiguration {
+public class AuthorizationBeanConfiguration {
     @Bean
     FilterRegistrationBean<AuthenticationServletFilter> createAuthenticationServletFilter(
             AuthenticationServletFilter servletFilter

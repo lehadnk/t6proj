@@ -23,7 +23,7 @@ import org.thymeleaf.templatemode.TemplateMode;
         I18nBeanConfiguration.class
 })
 @Configuration
-public class AdminlteConfigurationBean {
+public class AdminlteBeanConfiguration {
     @Bean
     public SpringResourceTemplateResolver backofficeTemplateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
