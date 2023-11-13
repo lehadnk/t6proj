@@ -35,9 +35,9 @@ create table employee_documents
     employee_id   integer not null constraint employee_documents_employee_id_constraint references employees("id") on delete restrict on update cascade,
     url           varchar(255) not null,
     document_type smallint not null,
-    document_number varchar(255),
-    document_date date,
-    issued_by varchar(255)
+    document_number varchar(255) default null,
+    document_date date default null,
+    issued_by varchar(255) default null
 );
 
 alter table employee_documents owner to postgres;
